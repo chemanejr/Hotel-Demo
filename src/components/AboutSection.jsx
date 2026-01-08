@@ -9,8 +9,11 @@ const AboutSection = () => {
     return (
         <section
             id="about"
-            className="min-h-screen w-full py-24 px-6 md:px-12 lg:px-20 bg-[var(--color-bg)] flex flex-col lg:flex-row items-center gap-12 lg:gap-20 overflow-hidden relative"
+            className={`min-h-[80vh] w-full py-24 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-24 overflow-hidden relative
+                ${isDark ? 'bg-slate-950' : 'bg-white'}`}
         >
+            {/* Top Blend Gradient */}
+            {isDark && <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black to-transparent pointer-events-none opacity-50" />}
             <div className="flex-1 min-w-[300px] w-full order-2 lg:order-1">
                 <motion.div
                     initial="hidden"
@@ -33,7 +36,7 @@ const AboutSection = () => {
 
                     <motion.h2
                         variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-8 leading-[1.1]"
+                        className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-8 leading-[1.1] tracking-tight"
                     >
                         {t('about.title')}
                     </motion.h2>

@@ -780,8 +780,6 @@ tr.highlight {
     color: white;
     max-width: 800px;
     padding: 0 2rem;
-    /* Mais 0.5cm p/ esquerda e 0.5cm p/ baixo (Total: 9.5cm direita, 3.5cm baixo) */
-    transform: translate(359px, 133px);
 }
 
 .promise-content blockquote {

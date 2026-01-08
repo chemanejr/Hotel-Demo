@@ -73,7 +73,7 @@ const Services = () => {
                             alt={service.title}
                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-10">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-10">
                             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">{service.title}</h3>
                             <div className="w-12 h-1 bg-primary group-hover:w-full transition-all duration-500 ease-out" />
                             <p className="text-white/60 text-sm mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

@@ -71,81 +71,83 @@ const Navbar = () => {
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5 }}
-                className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-400 flex justify-between items-center
+                className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-400 flex justify-center
                     ${scrolled ? (isDark ? 'bg-slate-900/80' : 'bg-white/80') : 'bg-transparent'}
-                    ${scrolled ? 'py-4 px-6 md:px-12' : 'py-6 px-8 md:px-16'}
+                    ${scrolled ? 'py-4' : 'py-6'}
                     ${scrolled ? 'backdrop-blur-xl border-b border-white/5 shadow-lg' : ''}`}
             >
-                {/* Logo */}
-                <div className="flex-1">
-                    <Link
-                        to="/"
-                        className={`text-2xl font-bold tracking-widest no-underline transition-colors duration-300
-                            ${scrolled ? 'text-text' : 'text-white'}`}
-                    >
-                        LUSSO<span className="text-primary">.</span>
-                    </Link>
-                </div>
-
-                {/* Desktop Navigation */}
-                <div className="hidden lg:flex flex-[2] justify-center items-center gap-10">
-                    {navLinks.map((link) => (
+                <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20 flex justify-between items-center">
+                    {/* Logo */}
+                    <div className="flex-1">
                         <Link
-                            key={link.name}
-                            to={link.path}
-                            className={`nav-link text-sm font-medium transition-all duration-300 relative
-                                ${scrolled ? 'text-text opacity-70 hover:opacity-100' : 'text-white'}
-                                ${isLinkActive(link) ? 'after:content-[""] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-primary' : ''}`}
+                            to="/"
+                            className={`text-2xl font-bold tracking-widest no-underline transition-colors duration-300
+                                ${scrolled ? 'text-text' : 'text-white'}`}
                         >
-                            {link.name}
+                            LUSSO<span className="text-primary">.</span>
                         </Link>
-                    ))}
-                </div>
-
-                {/* Actions & Mobile Trigger */}
-                <div className="flex-1 flex justify-end items-center gap-4">
-                    {/* Desktop Actions */}
-                    <div className="hidden lg:flex items-center gap-6">
-                        {/* Language Selector */}
-                        <div className={`flex gap-3 text-[10px] font-bold py-1 px-3 rounded-full border border-white/10 bg-white/5
-                            ${scrolled ? 'text-primary' : 'text-white'}`}>
-                            {['PT', 'EN', 'FR'].map(lang => (
-                                <span
-                                    key={lang}
-                                    onClick={() => setLanguage(lang.toLowerCase())}
-                                    className={`cursor-pointer transition-opacity duration-300 ${language === lang.toLowerCase() ? 'opacity-100' : 'opacity-30'}`}
-                                >
-                                    {lang}
-                                </span>
-                            ))}
-                        </div>
-
-                        {/* Theme Toggle */}
-                        <button
-                            onClick={toggleTheme}
-                            className={`w-9 h-9 rounded-full flex items-center justify-center border-2 transition-all duration-300
-                                ${scrolled ? 'border-primary text-primary' : 'border-white text-white'} hover:scale-110`}
-                            aria-label="Toggle theme"
-                        >
-                            {isDark ? <Sun size={18} /> : <Moon size={18} />}
-                        </button>
-
-                        <button onClick={openBooking} className="btn-primary py-2 px-6 text-xs uppercase tracking-wider font-bold">
-                            {t('nav.book')}
-                        </button>
                     </div>
 
-                    {/* Mobile Hamburger Button */}
-                    <button
-                        className={`lg:hidden w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 active:scale-90 shadow-2xl
-                            ${scrolled
-                                ? (isDark ? 'bg-primary text-slate-900 shadow-primary/20' : 'bg-primary text-white shadow-primary/20')
-                                : 'bg-white/10 text-white backdrop-blur-md border border-white/20'}`}
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        aria-label="Toggle menu"
-                    >
-                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
+                    {/* Desktop Navigation */}
+                    <div className="hidden lg:flex flex-[2] justify-center items-center gap-10">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.name}
+                                to={link.path}
+                                className={`nav-link text-sm font-medium transition-all duration-300 relative
+                                    ${scrolled ? 'text-text opacity-70 hover:opacity-100' : 'text-white'}
+                                    ${isLinkActive(link) ? 'after:content-[""] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-primary' : ''}`}
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
+                    </div>
+
+                    {/* Actions & Mobile Trigger */}
+                    <div className="flex-1 flex justify-end items-center gap-6">
+                        {/* Desktop Actions */}
+                        <div className="hidden lg:flex items-center gap-8">
+                            {/* Language Selector */}
+                            <div className={`flex gap-4 text-[10px] font-bold py-1 px-4 rounded-full border border-white/10 bg-white/5
+                                ${scrolled ? 'text-primary' : 'text-white'}`}>
+                                {['PT', 'EN', 'FR'].map(lang => (
+                                    <span
+                                        key={lang}
+                                        onClick={() => setLanguage(lang.toLowerCase())}
+                                        className={`cursor-pointer transition-opacity duration-300 ${language === lang.toLowerCase() ? 'opacity-100' : 'opacity-50'}`}
+                                    >
+                                        {lang}
+                                    </span>
+                                ))}
+                            </div>
+
+                            {/* Theme Toggle */}
+                            <button
+                                onClick={toggleTheme}
+                                className={`w-9 h-9 rounded-full flex items-center justify-center border-2 transition-all duration-300
+                                    ${scrolled ? 'border-primary text-primary' : 'border-white text-white'} hover:scale-110`}
+                                aria-label="Toggle theme"
+                            >
+                                {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                            </button>
+
+                            <button onClick={openBooking} className="btn-primary py-2.5 px-8 text-xs uppercase tracking-wider font-bold">
+                                {t('nav.book')}
+                            </button>
+                        </div>
+
+                        {/* Mobile Hamburger Button */}
+                        <button
+                            className={`lg:hidden w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 active:scale-90 shadow-2xl
+                                ${scrolled
+                                    ? (isDark ? 'bg-primary text-slate-900 shadow-primary/20' : 'bg-primary text-white shadow-primary/20')
+                                    : 'bg-white/10 text-white backdrop-blur-md border border-white/20'}`}
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            aria-label="Toggle menu"
+                        >
+                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
+                    </div>
                 </div>
             </motion.nav>
 

@@ -99,7 +99,7 @@ const Rooms = () => {
                         </div>
 
                         {/* Content */}
-                        <div className="p-8 flex flex-col flex-grow">
+                        <div className="p-6 md:p-8 flex flex-col flex-grow">
                             <div className="flex justify-between items-start mb-4">
                                 <h3 className="text-xl font-bold">{room.title}</h3>
                                 <span className="text-primary font-bold text-sm tracking-tighter">{room.price.split(' ')[0]}</span>

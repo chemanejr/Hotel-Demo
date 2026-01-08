@@ -121,23 +121,14 @@ function MotionCarousel({ slides, options, linkBuilder, getLabel }) {
                                             />
 
                                             <div
-                                                className="w-full flex-none transition-colors"
+                                                className="w-full flex-none transition-colors px-6 md:px-12 py-3"
                                                 style={{
-                                                    backgroundColor: isDark ? '#1f2937' : '#ffffff',
-                                                    paddingLeft: '2cm',
-                                                    paddingRight: '1.5cm',
-                                                    paddingTop: '0.75rem',
-                                                    paddingBottom: '0.75rem'
+                                                    backgroundColor: isDark ? '#1f2937' : '#ffffff'
                                                 }}
                                             >
                                                 {/* Top Content: Title + Line and Button */}
                                                 <div className="flex justify-between items-center gap-4">
-                                                    <div
-                                                        className="space-y-2"
-                                                        style={{
-                                                            paddingLeft: (room.title === 'Quarto Deluxe' || room.title === 'Suíte Executiva') ? '0.75cm' : '0'
-                                                        }}
-                                                    >
+                                                    <div className="space-y-2">
                                                         <h3
                                                             className="text-2xl font-bold leading-tight transition-colors"
                                                             style={{ color: isDark ? '#f3f4f6' : '#111827' }}
@@ -201,7 +192,7 @@ function MotionCarousel({ slides, options, linkBuilder, getLabel }) {
                 <button
                     onClick={onPrev}
                     disabled={prevDisabled}
-                    className="absolute left-32 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-20 rounded-md bg-[#1a9cb0] text-white hover:bg-[#158a9c] disabled:opacity-30 transition-colors shadow-lg"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-20 rounded-md bg-[#1a9cb0] text-white hover:bg-[#158a9c] disabled:opacity-30 transition-colors shadow-lg"
                 >
                     <ChevronLeft className="size-7" />
                 </button>
@@ -209,7 +200,7 @@ function MotionCarousel({ slides, options, linkBuilder, getLabel }) {
                 <button
                     onClick={onNext}
                     disabled={nextDisabled}
-                    className="absolute right-32 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-20 rounded-md bg-[#1a9cb0] text-white hover:bg-[#158a9c] disabled:opacity-30 transition-colors shadow-lg"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-20 rounded-md bg-[#1a9cb0] text-white hover:bg-[#158a9c] disabled:opacity-30 transition-colors shadow-lg"
                 >
                     <ChevronRight className="size-7" />
                 </button>

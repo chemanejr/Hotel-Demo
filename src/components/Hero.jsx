@@ -76,7 +76,7 @@ const Hero = () => {
                         </button>
                         <button
                             onClick={() => navigate('/rooms')}
-                            className="btn-secondary w-full sm:w-auto py-4 px-10 text-sm font-bold uppercase tracking-widest border-white text-white hover:bg-white hover:text-black transition-all bg-white/5 backdrop-blur-sm"
+                            className="btn-secondary w-full sm:w-auto py-4 px-10 text-sm font-bold uppercase tracking-widest border-white !text-white hover:bg-white hover:!text-black transition-all bg-white/5 backdrop-blur-sm"
                         >
                             {t('hero.cta_rooms')}
                         </button>

@@ -13,7 +13,7 @@ const Contact = () => {
     ];
 
     return (
-        <section id="contact" className="w-full py-24 px-6 md:px-12 lg:px-20 bg-[var(--color-bg)] relative overflow-hidden">
+        <section id="contact" className={`w-full py-24 px-6 md:px-12 lg:px-20 relative overflow-hidden ${isDark ? 'bg-slate-950' : 'bg-slate-50'}`}>
             <motion.div
                 className="text-center mb-16"
                 initial="hidden"
@@ -41,7 +41,7 @@ const Contact = () => {
                 </motion.p>
             </motion.div>
 
-            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                 {/* Left Side: Contact Info */}
                 <div className="flex-1 flex flex-col justify-center gap-10">
                     {contactInfo.map((item, index) => (
@@ -65,7 +65,7 @@ const Contact = () => {
                 </div>
 
                 {/* Right Side: Map */}
-                <div className="flex-1 h-[400px] rounded-3xl overflow-hidden shadow-2xl relative border border-white/5">
+                <div className="h-[400px] lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl relative border border-white/5 bg-slate-800">
                     <iframe
                         title="Location Map"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3587.329735951833!2d32.6105833!3d-25.9525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee69a5310619717%3A0xc49bd7473729e247!2sSouthern%20Sun%20Maputo!5e0!3m2!1spt-PT!2smz!4v1715420000000!5m2!1spt-PT!2smz"

@@ -154,7 +154,7 @@ const RoomsPage = () => {
     useEffect(() => {
         // Precise scroll to tabs to ensure "one screen" framing
         const timer = setTimeout(() => {
-            const tabsElement = document.querySelector('#rooms-content');
+            const tabsElement = document.querySelector('#rooms-content-anchor');
             if (tabsElement) {
                 tabsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
