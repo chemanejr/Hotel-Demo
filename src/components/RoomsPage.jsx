@@ -185,7 +185,7 @@ const RoomsPage = () => {
                     key={activeTab + "-bg"}
                 />
                 <div className="rooms-hero-overlay-gradient"></div>
-                <div className="rooms-hero-centering">
+                <div className="rooms-hero-centering max-w-7xl mx-auto w-full">
                     <motion.div
                         key={activeTab + "-hero"}
                         initial="hidden"
@@ -204,7 +204,7 @@ const RoomsPage = () => {
                                 }
                             }
                         }}
-                        className="rooms-hero-text-over"
+                        className="rooms-hero-text-over mx-auto"
                     >
                         <motion.span
                             variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 0.6, y: 0 } }}
@@ -215,13 +215,13 @@ const RoomsPage = () => {
                         <motion.h1
                             variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="rooms-main-title"
+                            className="rooms-main-title uppercase"
                         >
                             {activeRoom.title}
                         </motion.h1>
                         <motion.p
                             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.8, y: 0 } }}
-                            className="rooms-hero-sub"
+                            className="rooms-hero-sub uppercase tracking-wider"
                         >
                             {activeRoom.desc}
                         </motion.p>
@@ -476,14 +476,14 @@ const RoomsPage = () => {
             {/* NEW: Luxury Comparison Table */}
             <section className="rooms-comparison-section">
                 <motion.div
-                    className="section-header-centered"
+                    className="max-w-7xl mx-auto section-header-centered"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, amount: 0.3 }}
                     transition={{ duration: 0.8 }}
                 >
                     <span className="rooms-pre-title">DECISÃO ELITE</span>
-                    <h2 className="comparison-title">Comparação de Estadias</h2>
+                    <h2 className="comparison-title uppercase tracking-tight">Comparação de Estadias</h2>
                 </motion.div>
 
                 <motion.div
@@ -521,15 +521,15 @@ const RoomsPage = () => {
             {/* NEW: Experiences & Add-ons */}
             <section className="rooms-extras-section" id="room-experiences">
                 <motion.div
-                    className="section-header-centered"
+                    className="max-w-7xl mx-auto section-header-centered"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, amount: 0.3 }}
                     transition={{ duration: 0.8 }}
                 >
                     <span className="rooms-pre-title">PEQUENOS MIMOS</span>
-                    <h2 className="comparison-title">Experiências Exclusivas</h2>
-                    <p className="extras-subtext">Personalize a sua estadia com os nossos pacotes de assinatura.</p>
+                    <h2 className="comparison-title uppercase tracking-tight">Experiências Exclusivas</h2>
+                    <p className="extras-subtext uppercase tracking-widest opacity-40">Personalize a sua estadia com os nossos pacotes de assinatura.</p>
                 </motion.div>
 
                 <div className="extras-grid">

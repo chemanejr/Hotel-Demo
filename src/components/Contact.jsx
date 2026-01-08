@@ -15,7 +15,7 @@ const Contact = () => {
     return (
         <section id="contact" className={`w-full py-24 px-6 md:px-12 lg:px-20 relative overflow-hidden ${isDark ? 'bg-slate-950' : 'bg-slate-50'}`}>
             <motion.div
-                className="text-center mb-16"
+                className="max-w-7xl mx-auto text-center mb-16"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
@@ -29,13 +29,13 @@ const Contact = () => {
             >
                 <motion.h2
                     variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                    className="text-4xl md:text-5xl font-bold mb-4"
+                    className="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight"
                 >
                     Contactos
                 </motion.h2>
                 <motion.p
                     variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.6, y: 0 } }}
-                    className="text-lg opacity-60"
+                    className="text-lg opacity-60 uppercase tracking-[0.1em]"
                 >
                     Estamos aqui para tornar a sua estadia inesquecível.
                 </motion.p>
