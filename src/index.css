@@ -1,0 +1,713 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+@import "tailwindcss";
+
+:root {
+    --color-bg: #ffffff;
+    /* White */
+    --color-text: #0f172a;
+    /* Slate 900 */
+    --color-primary: #0891b2;
+    /* Cyan 600 - darker for contrast on white */
+    --color-secondary: #d97706;
+    /* Amber 600 */
+    --color-glass: rgba(255, 255, 255, 0.7);
+    /* White frost */
+    --color-glass-border: rgba(0, 0, 0, 0.1);
+    --color-glass-dark: rgba(15, 23, 42, 0.05);
+    /* Dark tint for cards */
+
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.5;
+    font-weight: 300;
+
+    color-scheme: light;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}
+
+/* Dark Theme */
+.dark {
+    --color-bg: #0f172a;
+    --color-text: #f8fafc;
+    --color-primary: #06b6d4;
+    --color-secondary: #fbbf24;
+    --color-glass: rgba(15, 23, 42, 0.7);
+    --color-glass-border: rgba(255, 255, 255, 0.1);
+    --color-glass-dark: rgba(248, 250, 252, 0.05);
+
+    color-scheme: dark;
+}
+
+.dark body {
+    background: #0a0f1e;
+}
+
+/* Dark Theme - Cards and Containers */
+.dark .service-card {
+    background: #1e293b;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+}
+
+.dark .service-card h3 {
+    color: #f8fafc;
+}
+
+.service-description {
+    color: #64748b;
+}
+
+.dark .service-description,
+.dark .service-card p {
+    color: #f8fafc !important;
+}
+
+/* Dark Theme - Forms and Inputs */
+.dark input,
+.dark textarea {
+    background: #1e293b !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: #f8fafc !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+    color: #64748b;
+}
+
+.dark label {
+    color: #f8fafc !important;
+}
+
+/* Dark Theme - Contact Form Container */
+.dark .contact-item h3 {
+    color: #f8fafc;
+}
+
+.dark .contact-item p {
+    color: #94a3b8;
+}
+
+/* Dark Theme - Generic white backgrounds */
+.dark [style*="background: #fff"],
+.dark [style*="background:#fff"],
+.dark [style*="background: white"] {
+    background: #1e293b !important;
+}
+
+/* Dark Theme - Navbar */
+.dark nav {
+    background: rgba(15, 23, 42, 0.8) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+    will-change: transform;
+}
+
+/* Dark Theme - Section containers */
+.dark .section-container {
+    background: transparent;
+}
+
+.dark .section-subtitle {
+    color: #94a3b8;
+}
+
+/* Dark Theme - Hero */
+.dark .hero-subtitle {
+    color: #94a3b8;
+}
+
+.dark .hero-description {
+    color: #cbd5e1 !important;
+}
+
+/* Dark Theme - Footer */
+.dark footer {
+    background: #1e293b !important;
+    border-top-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark footer h2 {
+    color: #f8fafc !important;
+}
+
+.dark footer p,
+.dark footer a {
+    color: #94a3b8 !important;
+}
+
+.dark footer a {
+    color: #f8fafc !important;
+}
+
+/* Dark Theme - Contact Form */
+.dark .contact-form-container {
+    background: #1e293b !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .contact-form-container h2 {
+    color: #f8fafc !important;
+}
+
+.dark .contact-form-container input,
+.dark .contact-form-container textarea {
+    background: #0f172a !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: #f8fafc !important;
+}
+
+.dark .contact-form-container label {
+    color: #f8fafc !important;
+}
+
+.dark section h2 {
+    color: #f8fafc !important;
+}
+
+/* Dark Theme - WiFi Section */
+.dark .wifi-section {
+    background: #1e293b !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .wifi-icon-circle {
+    background: rgba(6, 182, 212, 0.15) !important;
+}
+
+.dark .wifi-section h3 {
+    color: #f8fafc !important;
+}
+
+.dark .wifi-section p {
+    color: #94a3b8 !important;
+}
+
+/* Dark Theme - Room Cards */
+.dark .room-card p,
+.dark .room-card-3d p {
+    color: #f8fafc !important;
+}
+
+.dark .room-card h3,
+.dark .room-card-3d h3 {
+    color: #f8fafc !important;
+}
+
+/* Dark Theme - Service Detail Pages */
+.service-detail-back {
+    color: #64748b;
+}
+
+.dark .service-detail-back {
+    color: #94a3b8 !important;
+}
+
+.service-detail-title {
+    color: #0f172a;
+}
+
+.dark .service-detail-title {
+    color: #f8fafc !important;
+}
+
+.service-detail-description {
+    color: #334155;
+}
+
+.dark .service-detail-description {
+    color: #f8fafc !important;
+}
+
+.service-detail-feature {
+    color: #475569;
+}
+
+.dark .service-detail-feature {
+    color: #f8fafc !important;
+}
+
+/* Dark Theme - Booking Modal */
+.booking-modal-container {
+    background: #fff;
+}
+
+.dark .booking-modal-container {
+    background: #1e293b !important;
+}
+
+.booking-modal-title {
+    color: #0f172a;
+}
+
+.dark .booking-modal-title {
+    color: #f8fafc !important;
+}
+
+.booking-modal-subtitle {
+    color: #64748b;
+}
+
+.dark .booking-modal-subtitle {
+    color: #94a3b8 !important;
+}
+
+.booking-modal-label {
+    color: #334155;
+}
+
+.dark .booking-modal-label {
+    color: #f8fafc !important;
+}
+
+.dark .booking-modal-container input,
+.dark .booking-modal-container select,
+.dark .booking-modal-container textarea {
+    background: #0f172a !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: #f8fafc !important;
+}
+
+/* Dark Theme - Map placeholder and similar elements */
+.dark [style*="background: #e2e8f0"] {
+    background: #1e293b !important;
+}
+
+.dark [style*="color: #64748b"] {
+    color: #94a3b8 !important;
+}
+
+/* Dark Theme - Specific white background overrides */
+.dark div[style*="background: #fff"],
+.dark div[style*="background: white"] {
+    background: #1e293b !important;
+}
+
+.dark div[style*="background: #fff"] h2,
+.dark div[style*="background: #fff"] h3 {
+    color: #f8fafc !important;
+}
+
+/* Dark Theme - Icon backgrounds */
+.dark div[style*="background: #f0f9ff"] {
+    background: rgba(6, 182, 212, 0.15) !important;
+}
+
+/* Dark Theme - Text colors for headings in dark sections */
+.dark .section-title {
+    color: #f8fafc !important;
+}
+
+.dark .section-subtitle {
+    color: #94a3b8 !important;
+}
+
+/* Dark Theme - Hero text */
+.dark .hero-subtitle {
+    color: #94a3b8 !important;
+}
+
+.dark .hero-title {
+    color: #f8fafc !important;
+}
+
+.dark .hero-description {
+    color: #cbd5e1 !important;
+}
+
+/* Dark Theme - Contact section */
+.dark .contact-item h3 {
+    color: #f8fafc !important;
+}
+
+.dark .contact-item p {
+    color: #94a3b8 !important;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #f8fafc;
+    /* Very light subtle gray for depth */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Typography Utilities --- */
+.text-primary {
+    color: var(--color-primary);
+}
+
+/* --- Buttons --- */
+.btn-primary {
+    background: var(--color-primary);
+    color: #000;
+    border: none;
+    padding: 1rem 2rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-primary);
+    padding: 1rem 2rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-left: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-secondary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: rgba(6, 182, 212, 0.1);
+}
+
+/* --- Hero Section --- */
+.hero-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #000;
+}
+
+.hero-image-real {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    /* Slight zoom for parallax feel */
+    transform: scale(1.1);
+}
+
+.hero-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 70%);
+    opacity: 0.8;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), #0a0a0a);
+    z-index: 1;
+}
+
+.hero-content {
+    z-index: 10;
+    padding: 0 1rem;
+    max-width: 800px;
+}
+
+.hero-subtitle {
+    display: block;
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.hero-title {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -2px;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    color: #a0a0a0;
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* --- General Sections --- */
+.section-container {
+    padding: 6rem 10%;
+    position: relative;
+}
+
+.section-header {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.section-header.right-aligned {
+    text-align: right;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+}
+
+.section-subtitle {
+    color: #888;
+    font-size: 1.5rem;
+}
+
+/* --- Rooms Grid 3D --- */
+.rooms-grid-3d {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    padding: 2rem 0;
+}
+
+.room-card-3d {
+    height: 450px;
+    width: 100%;
+    perspective: 1000px;
+    /* Essential for 3D effect */
+}
+
+.room-overlay-3d {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.room-card-3d:hover .room-overlay-3d {
+    opacity: 1;
+}
+
+.btn-primary-small {
+    background: var(--color-primary);
+    color: #000;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* --- Rooms Grid --- */
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.room-card {
+    background: var(--color-glass);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+}
+
+.room-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-primary);
+}
+
+.room-image-wrapper {
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+.room-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.room-card:hover .room-image {
+    transform: scale(1.1);
+}
+
+.room-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.room-card:hover .room-overlay {
+    opacity: 1;
+}
+
+.room-info {
+    padding: 1.5rem;
+}
+
+.room-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.room-price {
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.room-info p {
+    color: #aaa;
+    font-size: 0.95rem;
+}
+
+/* --- Services Grid --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-primary);
+}
+
+.service-card h3 {
+    color: #0f172a;
+}
+
+.service-card p {
+    color: #64748b;
+}
+
+.service-icon {
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    padding: 1rem;
+    background: rgba(0, 242, 255, 0.1);
+    border-radius: 50%;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .btn-secondary {
+        margin-left: 0;
+        margin-top: 1rem;
+        display: block;
+        width: 100%;
+    }
+
+    .btn-primary {
+        width: 100%;
+        display: block;
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .section-container {
+        padding: 4rem 1.5rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .hidden.md\:flex {
+        display: flex !important;
+    }
+}

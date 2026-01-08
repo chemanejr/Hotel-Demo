@@ -1,0 +1,857 @@
+/* --- Rooms Page Enhancement: Split-Screen & Editorial --- */
+
+.rooms-page {
+    background: var(--color-bg);
+}
+
+/* --- Soul & Atmosphere Utilities --- */
+.serif {
+    font-family: 'Playfair Display', serif;
+}
+
+.rooms-soul-waves {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.rooms-soul-waves svg {
+    width: 100%;
+    height: 200px;
+    animation: wave-float 10s infinite alternate ease-in-out;
+}
+
+@keyframes wave-float {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(20px);
+    }
+}
+
+.room-mood-text {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+}
+
+/* 1. Full-Screen Hero Section */
+.rooms-full-hero {
+    position: relative;
+    height: 85vh;
+    /* Breathable but not quite full viewport to see tabs start */
+    width: 100%;
+    background: #0f172a;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.rooms-hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.rooms-hero-overlay-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.8) 100%);
+    z-index: 2;
+}
+
+.rooms-hero-centering {
+    position: relative;
+    z-index: 10;
+    padding: 0 10%;
+    color: white;
+}
+
+.rooms-hero-text-over {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.rooms-pre-title {
+    display: block;
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    margin-bottom: 1.5rem;
+}
+
+.rooms-main-title {
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.rooms-hero-sub {
+    font-size: 1.4rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* 2. Sticky Navigation Tabs */
+.rooms-tabs-sticky {
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    height: 60px;
+    /* Precise height for framing calculation */
+    display: flex;
+    align-items: center;
+    background: var(--color-bg);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+    scroll-margin-top: 80px;
+    /* Aligns with Navbar */
+}
+
+.dark .rooms-tabs-sticky {
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.rooms-tabs-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.rooms-tab-item {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-text);
+    opacity: 0.4;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.rooms-tab-item:hover,
+.rooms-tab-item.active {
+    opacity: 1;
+}
+
+.rooms-tab-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-primary);
+}
+
+/* 3. Split Viewer Section */
+.rooms-split-viewer {
+    width: 100%;
+    height: calc(100vh - 140px);
+    /* Fill remaining viewport (100vh - 80px Nav - 60px Tabs) */
+    overflow: hidden;
+    scroll-margin-top: 140px;
+}
+
+.rooms-split-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.rooms-side-media {
+    flex: 1.2;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.rooms-media-frame {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.rooms-media-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rooms-side-info {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    padding: 2.5rem 8% 4rem;
+    /* Balanced top padding */
+    background: var(--color-bg);
+    overflow-y: auto;
+    height: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) transparent;
+}
+
+.rooms-side-info::-webkit-scrollbar {
+    width: 4px;
+}
+
+.rooms-side-info::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius: 20px;
+}
+
+.rooms-info-inner {
+    max-width: 540px;
+}
+
+.rooms-h2 {
+    font-size: 2.8rem;
+    /* Reduced from 3.5rem */
+    margin-bottom: 1rem;
+    /* Reduced from 1.5rem */
+    font-weight: 700;
+}
+
+.rooms-specs-bar {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    /* Reduced from 2.5rem */
+    padding-bottom: 1rem;
+    /* Reduced from 1.5rem */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dark .rooms-specs-bar {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.spec-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.rooms-description-text {
+    font-size: 1.05rem;
+    /* Slightly smaller */
+    line-height: 1.6;
+    /* More compact */
+    margin-bottom: 2rem;
+    /* Reduced from 3rem */
+    opacity: 0.8;
+}
+
+.rooms-amenities-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    /* Reduced from 1.2rem */
+    margin-bottom: 3rem;
+    /* Reduced from 4rem */
+}
+
+.amenity-pill {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.amenity-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8, 145, 178, 0.1);
+    color: var(--color-primary);
+    border-radius: 50%;
+}
+
+.amenity-label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* 4. Price Badge & Action (Premium Redesign) */
+.rooms-price-badge {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 1.5rem 2rem;
+    /* Reduced from 2.5rem 3rem */
+    border-radius: 4px;
+    /* Sharper, more modern */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: float-badge 6s ease-in-out infinite;
+    z-index: 20;
+}
+
+@keyframes float-badge {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.price-label {
+    font-size: 0.6rem;
+    /* Smaller from 0.7rem */
+    font-weight: 600;
+    letter-spacing: 3px;
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.price-value {
+    font-size: 2.5rem;
+    /* Reduced from 3.5rem */
+    font-weight: 700;
+    line-height: 1;
+    font-family: 'Playfair Display', serif;
+    /* Soul injection */
+    display: flex;
+    align-items: flex-start;
+}
+
+.price-unit {
+    font-size: 0.75rem;
+    /* Reduced from 0.85rem */
+    margin-top: 0.4rem;
+    opacity: 0.5;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+/* Dark mode specific refinement for price check */
+.dark .rooms-price-badge {
+    background: rgba(15, 23, 42, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    /* Maintain white for punch over photos */
+}
+
+.luxury-booking-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.2rem 1.8rem;
+    /* More compact padding */
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px -5px rgba(8, 145, 178, 0.3);
+}
+
+.luxury-booking-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(8, 145, 178, 0.4);
+    filter: brightness(1.1);
+}
+
+.rooms-action-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.rooms-services-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    padding: 0.5rem 0;
+}
+
+.rooms-services-link:hover {
+    opacity: 1;
+    letter-spacing: 3px;
+}
+
+.rooms-services-link svg {
+    transition: transform 0.3s ease;
+}
+
+.rooms-services-link:hover svg {
+    transform: translateX(5px);
+}
+
+/* 5. Animations: Ken Burns */
+.ken-burns {
+    animation: kenburns 20s infinite alternate linear;
+    will-change: transform;
+}
+
+@keyframes kenburns {
+    0% {
+        transform: scale(1);
+        transform-origin: center;
+    }
+
+    100% {
+        transform: scale(1.15);
+        transform-origin: center;
+    }
+}
+
+/* 6. Comparison Table */
+.rooms-comparison-section {
+    padding: 8rem 10%;
+    background: var(--color-bg);
+}
+
+.section-header-centered {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.comparison-title {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.comparison-table-container {
+    overflow-x: auto;
+}
+
+.luxury-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.luxury-table th {
+    padding: 2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    opacity: 0.5;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.luxury-table td {
+    padding: 2.5rem 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.dark .luxury-table th {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .luxury-table td {
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.room-label-cell {
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.price-cell {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+}
+
+tr.highlight {
+    background: rgba(8, 145, 178, 0.03);
+}
+
+/* 7. Extras & Add-ons */
+.rooms-extras-section {
+    padding: 10rem 10%;
+    background: #0f172a;
+    /* Dark impact section */
+    color: white;
+}
+
+.dark .rooms-extras-section {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.extras-subtext {
+    opacity: 0.6;
+    margin-top: 1rem;
+}
+
+.extras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.extra-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 3rem;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.extra-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+.extra-icon-box {
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.extra-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.extra-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.7;
+    margin-bottom: 2rem;
+}
+
+.extra-price {
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+/* 8. General Amenities Banner */
+.rooms-general-amenities {
+    padding: 6rem 10%;
+    background: var(--color-bg);
+}
+
+.amenities-banner {
+    display: flex;
+    justify-content: space-around;
+    padding: 4rem;
+    background: rgba(8, 145, 178, 0.05);
+    border-radius: 4px;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.amenity-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* 9. FAQ Section */
+.rooms-faq-section {
+    padding: 8rem 10%;
+    background: var(--color-bg);
+}
+
+.faq-grid-minimal {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.faq-item-clean h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
+.faq-item-clean p {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.7;
+}
+
+/* 10. Atmosphere Mood Grid */
+.rooms-mood-grid-section {
+    padding: 10rem 10%;
+    background: var(--color-bg);
+}
+
+.mood-container-wide {
+    display: flex;
+    gap: 8rem;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.mood-text-side {
+    flex: 1;
+}
+
+.mood-main-desc {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    opacity: 0.7;
+    margin: 2rem 0 4rem;
+}
+
+.mood-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.mood-detail-item {
+    display: flex;
+    gap: 2rem;
+}
+
+.detail-number {
+    font-size: 2.5rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--color-primary);
+    opacity: 0.3;
+}
+
+.mood-detail-item h4 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.mood-detail-item p {
+    opacity: 0.6;
+    line-height: 1.6;
+}
+
+.mood-images-side {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.mood-img-large {
+    height: 450px;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+}
+
+.mood-img-small-row {
+    display: flex;
+    gap: 2rem;
+}
+
+.mood-img-small {
+    flex: 1;
+    height: 220px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.mood-img-large img,
+.mood-img-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+}
+
+.mood-images-side:hover img {
+    transform: scale(1.05);
+}
+
+/* 11. Our Promise (Parallax Quote) */
+.rooms-promise-section {
+    position: relative;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.promise-parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop');
+    /* Removed background-attachment: fixed as it causes heavy scroll jank */
+    background-position: center;
+    background-size: cover;
+}
+
+.promise-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.7);
+}
+
+.promise-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 0 2rem;
+    /* Mais 0.5cm p/ esquerda e 0.5cm p/ baixo (Total: 9.5cm direita, 3.5cm baixo) */
+    transform: translate(359px, 133px);
+}
+
+.promise-content blockquote {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+}
+
+.promise-content cite {
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    font-style: normal;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1024px) {
+
+    .rooms-split-hero,
+    .rooms-split-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .rooms-side-media {
+        height: 50vh;
+    }
+
+    .rooms-side-info,
+    .rooms-hero-content {
+        padding: 4rem 5%;
+    }
+
+    .rooms-h2 {
+        font-size: 2.5rem;
+    }
+
+    .rooms-tabs-wrapper {
+        gap: 1.5rem;
+        padding: 0 1rem;
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    .mood-container-wide {
+        flex-direction: column;
+        gap: 4rem;
+    }
+
+    .rooms-promise-section {
+        height: auto;
+        padding: 6rem 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    .rooms-h2 {
+        font-size: 2rem;
+    }
+
+    .luxury-table td,
+    .luxury-table th {
+        padding: 1.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .faq-grid-minimal {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
