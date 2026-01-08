@@ -1,0 +1,16 @@
+﻿* main
+origin	https://github.com/chemanejr/Hotel-Demo.git (fetch)
+origin	https://github.com/chemanejr/Hotel-Demo.git (push)
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	debug_git.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+a873ae8 Confirmar corre├º├Áes de layout
+9e5cab6 Corrigir bugs de layout e sincronizar com design Netlify
+f96a546 ajustes finais de responsividade
+04e6e9b ajustes finais de responsividade
+c56603b ajustes finais de responsividade
