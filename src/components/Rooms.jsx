@@ -79,47 +79,12 @@ const Rooms = () => {
                 </motion.p>
             </motion.div>
 
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-                {rooms.map((room, idx) => (
-                    <motion.div
-                        key={room.id}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.1 }}
-                        className="group relative flex flex-col bg-slate-900/50 dark:bg-slate-800/50 rounded-3xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500 shadow-xl"
-                    >
-                        {/* Image Container */}
-                        <div className="aspect-[4/3] overflow-hidden">
-                            <img
-                                src={room.image}
-                                alt={room.title}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                        </div>
-
-                        {/* Content */}
-                        <div className="p-6 md:p-8 flex flex-col flex-grow">
-                            <div className="flex justify-between items-start mb-4">
-                                <h3 className="text-xl font-bold">{room.title}</h3>
-                                <span className="text-primary font-bold text-sm tracking-tighter">{room.price.split(' ')[0]}</span>
-                            </div>
-
-                            <div className="flex gap-4 mb-6 opacity-60">
-                                {room.features.map(f => (
-                                    <span key={f} className="text-[10px] uppercase font-bold tracking-widest">{f}</span>
-                                ))}
-                            </div>
-
-                            <button
-                                onClick={() => window.location.href = `/rooms#${room.id}`}
-                                className="mt-auto w-full py-4 bg-primary/10 hover:bg-primary text-primary hover:text-white border border-primary/20 rounded-xl font-bold text-xs uppercase tracking-widest transition-all duration-300 active:scale-95"
-                            >
-                                Detalhes do Quarto
-                            </button>
-                        </div>
-                    </motion.div>
-                ))}
+            <div className="max-w-7xl mx-auto">
+                <MotionCarousel
+                    slides={rooms}
+                    options={{ loop: true, align: 'center' }}
+                    linkBuilder={(room) => `/rooms#${room.id}`}
+                />
             </div>
         </section>
     );

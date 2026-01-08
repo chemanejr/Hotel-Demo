@@ -58,30 +58,12 @@ const Services = () => {
                 </motion.p>
             </motion.div>
 
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {services.map((service, idx) => (
-                    <motion.div
-                        key={service.id}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.1 }}
-                        className="group relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden cursor-pointer shadow-2xl"
-                    >
-                        <img
-                            src={service.image}
-                            alt={service.title}
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-10">
-                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">{service.title}</h3>
-                            <div className="w-12 h-1 bg-primary group-hover:w-full transition-all duration-500 ease-out" />
-                            <p className="text-white/60 text-sm mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                Clique para explorar esta experiência exclusiva.
-                            </p>
-                        </div>
-                    </motion.div>
-                ))}
+            <div className="max-w-7xl mx-auto">
+                <MotionCarousel
+                    slides={services}
+                    options={{ loop: true, align: 'center' }}
+                    linkBuilder={(service) => `/${service.id}`}
+                />
             </div>
         </section>
     );
