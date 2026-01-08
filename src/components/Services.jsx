@@ -23,25 +23,10 @@ const Services = () => {
     return (
         <section
             id="services"
-            style={{
-                height: '100vh',
-                width: '100%',
-                overflow: 'hidden',
-                paddingTop: '20vh',
-                paddingLeft: '5%',
-                paddingRight: '5%',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                position: 'relative',
-                background: 'var(--color-bg)',
-                scrollMarginTop: '100px'
-            }}
+            className="min-h-screen w-full py-24 px-6 md:px-12 lg:px-20 bg-[var(--color-bg)] relative scroll-mt-24"
         >
             <motion.div
-                className="section-header relative z-10"
-                style={{ textAlign: 'center', marginBottom: '2vh', height: '10vh', flexShrink: 0 }}
+                className="max-w-7xl mx-auto mb-16 text-center"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
@@ -49,43 +34,55 @@ const Services = () => {
                     hidden: { opacity: 0 },
                     visible: {
                         opacity: 1,
-                        transition: {
-                            staggerChildren: 0.15
-                        }
+                        transition: { staggerChildren: 0.15 }
                     }
                 }}
             >
+                <motion.span
+                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                    className="text-primary font-bold tracking-widest uppercase text-xs mb-4 block"
+                >
+                    Experiência Imersiva
+                </motion.span>
                 <motion.h2
                     variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                    className="section-title text-4xl md:text-5xl"
-                    style={{ color: 'inherit', margin: 0 }}
+                    className="text-4xl md:text-5xl font-bold mb-4"
                 >
                     O Que Oferecemos
                 </motion.h2>
                 <motion.p
                     variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.6, y: 0 } }}
-                    className="section-subtitle mt-0"
-                    style={{ fontSize: '1.2rem' }}
+                    className="text-lg max-w-2xl mx-auto"
                 >
-                    Mais do que uma estadia, uma imersão.
+                    Mais do que uma estadia, uma jornada de luxo e bem-estar em todos os sentidos.
                 </motion.p>
             </motion.div>
 
-            <motion.div
-                className="rooms-carousel-wrapper"
-                style={{ padding: '0 1rem', width: '100%', '--slide-height': '45vh', flexShrink: 0 }}
-                initial={{ opacity: 0, scale: 0.9, y: 40 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 1, delay: 0.1 }}
-            >
-                <MotionCarousel
-                    slides={[...services, ...services]}
-                    options={{ loop: true, align: 'center' }}
-                    linkBuilder={() => '/experiences'}
-                    getLabel={(index) => services[index % services.length].title}
-                />
-            </motion.div>
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {services.map((service, idx) => (
+                    <motion.div
+                        key={service.id}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="group relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden cursor-pointer shadow-2xl"
+                    >
+                        <img
+                            src={service.image}
+                            alt={service.title}
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-10">
+                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">{service.title}</h3>
+                            <div className="w-12 h-1 bg-primary group-hover:w-full transition-all duration-500 ease-out" />
+                            <p className="text-white/60 text-sm mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                Clique para explorar esta experiência exclusiva.
+                            </p>
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
         </section>
     );
 };

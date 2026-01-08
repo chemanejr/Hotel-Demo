@@ -28,17 +28,10 @@ const Testimonials = () => {
     const { isDark } = useTheme();
 
     return (
-        <section
-            style={{
-                padding: '10rem 5%',
-                background: isDark ? 'radial-gradient(circle at top right, #1e293b, #0f172a)' : 'radial-gradient(circle at top right, #f8fafc, #ffffff)',
-                width: '100%'
-            }}
-        >
+        <section className={`py-24 px-6 md:px-12 lg:px-20 w-full ${isDark ? 'bg-slate-950' : 'bg-slate-50'}`}>
             <div className="max-w-7xl mx-auto">
                 <motion.div
-                    className="section-header"
-                    style={{ textAlign: 'center', marginBottom: '4rem' }}
+                    className="text-center mb-16"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: false, amount: 0.3 }}
@@ -46,186 +39,113 @@ const Testimonials = () => {
                         hidden: { opacity: 0 },
                         visible: {
                             opacity: 1,
-                            transition: {
-                                staggerChildren: 0.2
-                            }
+                            transition: { staggerChildren: 0.2 }
                         }
                     }}
                 >
+                    <motion.span
+                        variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                        className="text-primary font-bold tracking-widest uppercase text-xs mb-4 block"
+                    >
+                        Vozes dos Nossos Hóspedes
+                    </motion.span>
                     <motion.h2
                         variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                        style={{
-                            fontSize: '3rem',
-                            fontWeight: 700,
-                            color: 'var(--color-text)',
-                            marginBottom: '1rem',
-                            fontFamily: 'Outfit, sans-serif'
-                        }}
+                        className="text-4xl md:text-5xl font-bold mb-4"
                     >
                         O Que Dizem de Nós
                     </motion.h2>
                     <motion.p
                         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.6, y: 0 } }}
-                        style={{ color: 'var(--color-text)', opacity: 0.6, fontSize: '1.2rem' }}
+                        className="text-lg opacity-60 max-w-2xl mx-auto"
                     >
                         A satisfação dos nossos hórpedes é a nossa maior recompensa.
                     </motion.p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {testimonials.map((item, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: false }}
-                            transition={{ delay: index * 0.2 }}
-                            style={{
-                                padding: '3rem',
-                                background: isDark ? 'rgba(30, 41, 59, 0.4)' : '#ffffff',
-                                borderRadius: '32px',
-                                position: 'relative',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                boxShadow: isDark ? '0 10px 40px rgba(0,0,0,0.2)' : '0 10px 40px rgba(0,0,0,0.05)',
-                                border: isDark ? '1px solid rgba(255,255,255,0.05)' : '1px solid rgba(0,0,0,0.02)'
-                            }}
+                            transition={{ delay: index * 0.1 }}
+                            className={`p-10 rounded-[2.5rem] relative flex flex-col h-full border transition-all duration-500
+                                ${isDark ? 'bg-slate-900 border-white/5 shadow-2xl shadow-black/40' : 'bg-white border-black/5 shadow-xl shadow-slate-200/50'}`}
                         >
                             <Quote
                                 size={40}
-                                style={{
-                                    position: 'absolute',
-                                    top: '2rem',
-                                    right: '2rem',
-                                    opacity: 0.1,
-                                    color: 'var(--color-primary)'
-                                }}
+                                className="absolute top-8 right-8 text-primary opacity-10"
                             />
 
-                            <p style={{
-                                fontSize: '1.1rem',
-                                lineHeight: 1.8,
-                                fontStyle: 'italic',
-                                color: 'var(--color-text)',
-                                marginBottom: '2.5rem',
-                                flex: 1
-                            }}>
+                            <p className="text-lg leading-relaxed italic mb-8 flex-grow text-text opacity-90">
                                 "{item.text}"
                             </p>
 
-                            <div>
-                                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-text)' }}>{item.name}</h4>
-                                <p style={{ fontSize: '0.85rem', color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>
-                                    {item.role}
-                                </p>
+                            <div className="flex items-center gap-4">
+                                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xl">
+                                    {item.name.charAt(0)}
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-text">{item.name}</h4>
+                                    <p className="text-[10px] text-primary font-bold uppercase tracking-widest">
+                                        {item.role}
+                                    </p>
+                                </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
 
+                {/* Feedback Form */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false }}
-                    style={{
-                        marginTop: '6rem',
-                        padding: '1.5rem 3rem',
-                        background: isDark ? '#1e293b' : '#ffffff',
-                        borderRadius: '24px',
-                        boxShadow: '0 20px 50px rgba(0,0,0,0.1)',
-                        border: isDark ? '1px solid #334155' : '1px solid #f1f5f9',
-                        maxWidth: '1000px',
-                        marginLeft: 'auto',
-                        marginRight: 'auto'
-                    }}
+                    className={`mt-24 p-8 md:p-16 rounded-[3rem] max-w-4xl mx-auto border
+                        ${isDark ? 'bg-slate-900 border-white/5' : 'bg-white border-black/5 shadow-2xl'}`}
                 >
-                    <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                        <h3 style={{
-                            fontSize: '2rem',
-                            fontWeight: 700,
-                            color: 'var(--color-text)',
-                            marginBottom: '0.5rem',
-                            fontFamily: 'Outfit, sans-serif'
-                        }}>
-                            Deixe o Seu Comentário
-                        </h3>
-                        <p style={{ color: 'var(--color-text)', opacity: 0.6, fontSize: '0.95rem' }}>
-                            A sua opinião é fundamental para continuarmos a elevar os nossos padrões.
-                        </p>
+                    <div className="text-center mb-10">
+                        <h3 className="text-3xl font-bold mb-4">Deixe o Seu Comentário</h3>
+                        <p className="opacity-60">A sua opinião é fundamental para continuarmos a elevar os nossos padrões.</p>
                     </div>
 
-                    <form style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text)', opacity: 0.8 }}>Nome</label>
+                    <form className="flex flex-col gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="flex flex-col gap-2">
+                                <label className="text-xs font-bold uppercase tracking-widest opacity-60">Nome</label>
                                 <input
                                     type="text"
                                     placeholder="Ex: Maria Silva"
-                                    style={{
-                                        padding: '0.8rem 1.2rem',
-                                        borderRadius: '12px',
-                                        border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
-                                        background: isDark ? '#0f172a' : '#f8fafc',
-                                        color: 'var(--color-text)',
-                                        outline: 'none',
-                                        transition: 'all 0.3s ease'
-                                    }}
+                                    className={`p-4 rounded-xl border outline-none transition-all focus:border-primary
+                                        ${isDark ? 'bg-slate-950 border-white/10 text-white' : 'bg-slate-50 border-black/10'}`}
                                 />
                             </div>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text)', opacity: 0.8 }}>Ocupação</label>
+                            <div className="flex flex-col gap-2">
+                                <label className="text-xs font-bold uppercase tracking-widest opacity-60">Ocupação</label>
                                 <input
                                     type="text"
                                     placeholder="Ex: Viajante"
-                                    style={{
-                                        padding: '0.8rem 1.2rem',
-                                        borderRadius: '12px',
-                                        border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
-                                        background: isDark ? '#0f172a' : '#f8fafc',
-                                        color: 'var(--color-text)',
-                                        outline: 'none',
-                                        transition: 'all 0.3s ease'
-                                    }}
+                                    className={`p-4 rounded-xl border outline-none transition-all focus:border-primary
+                                        ${isDark ? 'bg-slate-950 border-white/10 text-white' : 'bg-slate-50 border-black/10'}`}
                                 />
                             </div>
                         </div>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                            <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text)', opacity: 0.8 }}>A Sua Experiência</label>
+                        <div className="flex flex-col gap-2">
+                            <label className="text-xs font-bold uppercase tracking-widest opacity-60">A Sua Experiência</label>
                             <textarea
-                                rows="3"
+                                rows="4"
                                 placeholder="Conte-nos como foi a sua estadia..."
-                                style={{
-                                    padding: '0.8rem 1.2rem',
-                                    borderRadius: '12px',
-                                    border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
-                                    background: isDark ? '#0f172a' : '#f8fafc',
-                                    color: 'var(--color-text)',
-                                    outline: 'none',
-                                    transition: 'all 0.3s ease',
-                                    resize: 'none'
-                                }}
+                                className={`p-4 rounded-xl border outline-none transition-all focus:border-primary resize-none
+                                    ${isDark ? 'bg-slate-950 border-white/10 text-white' : 'bg-slate-50 border-black/10'}`}
                             />
                         </div>
 
-                        <motion.button
-                            whileHover={{ scale: 1.01 }}
-                            whileTap={{ scale: 0.99 }}
-                            style={{
-                                padding: '1rem',
-                                background: 'var(--color-primary)',
-                                color: 'white',
-                                borderRadius: '12px',
-                                border: 'none',
-                                fontWeight: 700,
-                                fontSize: '0.95rem',
-                                cursor: 'pointer',
-                                marginTop: '0.5rem',
-                                boxShadow: '0 8px 16px -4px rgba(8, 145, 178, 0.2)'
-                            }}
-                        >
-                            PUBLICAR COMENTÁRIO
-                        </motion.button>
+                        <button className="btn-primary w-full py-5 text-sm font-bold uppercase tracking-[0.2em] mt-2 shadow-2xl shadow-primary/20 transition-transform active:scale-95">
+                            Publicar Comentário
+                        </button>
                     </form>
                 </motion.div>
             </div>

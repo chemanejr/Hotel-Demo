@@ -9,16 +9,9 @@ const AboutSection = () => {
     return (
         <section
             id="about"
-            style={{
-                padding: '10rem 10%',
-                background: 'var(--color-bg)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '5rem',
-                flexWrap: 'wrap'
-            }}
+            className="min-h-screen w-full py-24 px-6 md:px-12 lg:px-20 bg-[var(--color-bg)] flex flex-col lg:flex-row items-center gap-12 lg:gap-20 overflow-hidden relative"
         >
-            <div style={{ flex: 1, minWidth: '300px' }}>
+            <div className="flex-1 min-w-[300px] w-full order-2 lg:order-1">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -27,70 +20,57 @@ const AboutSection = () => {
                         hidden: { opacity: 0 },
                         visible: {
                             opacity: 1,
-                            transition: {
-                                staggerChildren: 0.2
-                            }
+                            transition: { staggerChildren: 0.2 }
                         }
                     }}
                 >
                     <motion.span
                         variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 0.6, x: 0 } }}
-                        className="rooms-pre-title"
+                        className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block"
                     >
                         {t('about.pre')}
                     </motion.span>
+
                     <motion.h2
                         variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                        className="serif"
-                        style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', margin: '1rem 0', lineHeight: 1.1 }}
+                        className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-8 leading-[1.1]"
                     >
                         {t('about.title')}
                     </motion.h2>
+
                     <motion.p
                         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.8, y: 0 } }}
-                        style={{ fontSize: '1.2rem', lineHeight: 1.8, marginBottom: '3rem' }}
+                        className="text-lg md:text-xl text-slate-400 leading-relaxed mb-10 max-w-xl"
                     >
                         {t('about.desc')}
                     </motion.p>
+
                     <motion.div variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } }}>
-                        <Link to="/about" className="btn-secondary" style={{ marginLeft: 0 }}>
+                        <Link to="/about" className="btn-secondary py-4 px-10 text-sm font-bold uppercase tracking-widest inline-block border-primary text-primary hover:bg-primary hover:text-white transition-all">
                             {t('about.cta')}
                         </Link>
                     </motion.div>
                 </motion.div>
             </div>
 
-            <div style={{ flex: 1.2, minWidth: '350px', position: 'relative' }}>
+            <div className="flex-1.2 min-w-[300px] w-full relative order-1 lg:order-2">
                 <motion.div
                     initial={{ opacity: 0, scale: 1.1 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
-                    style={{
-                        height: '500px',
-                        borderRadius: '4px',
-                        overflow: 'hidden',
-                        boxShadow: '0 30px 60px rgba(0,0,0,0.1)'
-                    }}
+                    className="aspect-[4/5] md:aspect-video lg:aspect-[4/5] w-full rounded-2xl overflow-hidden shadow-2xl relative z-10"
                 >
                     <img
                         src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop"
                         alt="Lusso Futura Architecture"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        className="w-full h-full object-cover"
                     />
                 </motion.div>
 
                 {/* Visual Accent */}
-                <div style={{
-                    position: 'absolute',
-                    top: '-2rem',
-                    right: '-2rem',
-                    width: '100px',
-                    height: '100px',
-                    border: '2px solid var(--color-primary)',
-                    opacity: 0.2,
-                    zIndex: -1
-                }}></div>
+                <div className="absolute -top-6 -right-6 w-24 h-24 border-2 border-primary/20 rounded-full z-0 hidden md:block" />
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl z-0" />
             </div>
         </section>
     );

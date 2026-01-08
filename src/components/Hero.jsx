@@ -15,25 +15,16 @@ const Hero = () => {
     const ref = useRef(null);
 
     return (
-        <div className="hero-container" ref={ref} id="hero" style={{
-            position: 'relative',
+        <div className="hero-container relative min-h-screen w-full overflow-hidden flex items-center justify-center" ref={ref} id="hero" style={{
             backgroundImage: `url(${hotelHero})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
         }}>
             {/* Dark Gradient Overlay for text contrast */}
-            <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.7) 100%)',
-                zIndex: 1
-            }} />
+            <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/60 via-black/30 to-black/80" />
 
-            <div className="hero-content" style={{ position: 'relative', zIndex: 2 }}>
+            <div className="hero-content relative z-[2] w-full max-w-7xl px-6 md:px-12 lg:px-20 text-center md:text-left">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -51,44 +42,55 @@ const Hero = () => {
                 >
                     <motion.span
                         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                        className="hero-subtitle"
-                        style={{ color: '#06b6d4', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}
+                        className="block text-primary font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-4"
+                        style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}
                     >
                         {t('hero.welcome')}
                     </motion.span>
+
                     <motion.h1
                         variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                        className="hero-title"
-                        style={{ color: '#ffffff', textShadow: '0 4px 12px rgba(0,0,0,0.6)' }}
+                        className="text-4xl md:text-6xl lg:text-8xl font-bold text-white mb-6 leading-[1.1] tracking-tighter"
+                        style={{ textShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
                     >
                         {t('hero.title')}
                     </motion.h1>
+
                     <motion.p
                         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.8, y: 0 } }}
-                        className="hero-subtitle"
-                        style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)', color: '#f8fafc', fontWeight: 500 }}
+                        className="text-lg md:text-xl lg:text-2xl text-slate-200 mb-10 max-w-2xl mx-auto md:mx-0 font-medium"
+                        style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
                     >
                         {t('hero.subtitle')}
                     </motion.p>
 
                     <motion.div
                         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                        className="hero-cta-group"
+                        className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start"
                     >
-                        <button onClick={openBooking} className="btn-primary">{t('hero.cta_book')}</button>
-                        <button onClick={() => navigate('/rooms')} className="btn-secondary" style={{ color: '#ffffff', borderColor: '#ffffff' }}>{t('hero.cta_rooms')}</button>
+                        <button
+                            onClick={openBooking}
+                            className="btn-primary w-full sm:w-auto py-4 px-10 text-sm font-bold uppercase tracking-widest"
+                        >
+                            {t('hero.cta_book')}
+                        </button>
+                        <button
+                            onClick={() => navigate('/rooms')}
+                            className="btn-secondary w-full sm:w-auto py-4 px-10 text-sm font-bold uppercase tracking-widest border-white text-white hover:bg-white hover:text-black transition-all bg-white/5 backdrop-blur-sm"
+                        >
+                            {t('hero.cta_rooms')}
+                        </button>
                     </motion.div>
                 </motion.div>
             </div>
 
             <motion.div
-                className="scroll-indicator"
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 z-[2] flex flex-col items-center"
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                style={{ position: 'relative', zIndex: 2 }}
             >
-                <span style={{ fontSize: '0.8rem', opacity: 0.9, display: 'block', marginBottom: '0.5rem', color: '#ffffff', textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>Scroll</span>
-                <ChevronDown size={32} color="#06b6d4" />
+                <span className="text-[10px] uppercase tracking-[0.3em] opacity-60 text-white mb-2">Scroll</span>
+                <ChevronDown size={28} className="text-primary" />
             </motion.div>
         </div>
     );

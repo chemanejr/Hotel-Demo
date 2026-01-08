@@ -49,14 +49,7 @@ const PremiumHighlights = () => {
     const { isDark } = useTheme();
 
     return (
-        <section
-            style={{
-                background: isDark ? '#0f172a' : '#f9fafb',
-                padding: '8rem 5%',
-                width: '100%',
-                overflow: 'hidden'
-            }}
-        >
+        <section className={`py-24 px-6 md:px-12 w-full overflow-hidden ${isDark ? 'bg-slate-950' : 'bg-slate-50'}`}>
             <motion.div
                 className="max-w-7xl mx-auto"
                 variants={containerVariants}
@@ -64,71 +57,27 @@ const PremiumHighlights = () => {
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.2 }}
             >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                     {highlights.map((item, index) => (
                         <motion.div
                             key={index}
                             variants={itemVariants}
-                            whileHover={{ y: -10 }}
-                            style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                textAlign: 'center',
-                                padding: '2rem',
-                                borderRadius: '24px',
-                                background: isDark ? 'rgba(30, 41, 59, 0.5)' : 'rgba(255, 255, 255, 0.5)',
-                                backdropFilter: 'blur(10px)',
-                                border: isDark ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid rgba(0, 0, 0, 0.05)',
-                                transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
-                                cursor: 'default'
-                            }}
+                            whileHover={{ y: -8 }}
+                            className={`flex flex-col items-center text-center p-10 rounded-[2.5rem] backdrop-blur-md border transition-all duration-500 cursor-default
+                                ${isDark ? 'bg-slate-900/40 border-white/5' : 'bg-white/60 border-black/5 shadow-sm'}`}
                         >
-                            <div
-                                style={{
-                                    color: 'var(--color-primary)',
-                                    marginBottom: '1.5rem',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    width: '80px',
-                                    height: '80px',
-                                    borderRadius: '50%',
-                                    background: isDark ? 'rgba(6, 182, 212, 0.15)' : 'rgba(8, 145, 178, 0.08)',
-                                    boxShadow: isDark ? '0 8px 32px rgba(0, 0, 0, 0.2)' : '0 8px 32px rgba(8, 145, 178, 0.1)',
-                                    position: 'relative'
-                                }}
-                            >
-                                {/* Glass pulse effect decoration */}
-                                <div style={{
-                                    position: 'absolute',
-                                    inset: '-8px',
-                                    borderRadius: '50%',
-                                    border: '1px solid var(--color-primary)',
-                                    opacity: 0.1,
-                                    transform: 'scale(1)'
-                                }} />
+                            <div className={`relative flex items-center justify-center w-20 h-20 rounded-full mb-8 text-primary transition-transform duration-500
+                                ${isDark ? 'bg-primary/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]' : 'bg-primary/5 shadow-xl shadow-primary/10'}`}>
+                                {/* Animated ring decoration */}
+                                <div className="absolute inset-[-4px] rounded-full border border-primary/20 scale-100 group-hover:scale-110 transition-transform" />
                                 {item.icon}
                             </div>
-                            <h3
-                                style={{
-                                    fontSize: '1.3rem',
-                                    fontWeight: 700,
-                                    marginBottom: '1rem',
-                                    color: 'var(--color-text)',
-                                    fontFamily: 'Outfit, sans-serif'
-                                }}
-                            >
+
+                            <h3 className="text-xl font-bold mb-4 tracking-tight text-text">
                                 {item.title}
                             </h3>
-                            <p
-                                style={{
-                                    fontSize: '0.95rem',
-                                    lineHeight: 1.6,
-                                    color: isDark ? '#94a3b8' : '#64748b',
-                                    fontWeight: 400
-                                }}
-                            >
+
+                            <p className={`text-sm leading-relaxed font-medium ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                                 {item.description}
                             </p>
                         </motion.div>

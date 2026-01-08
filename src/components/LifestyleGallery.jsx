@@ -17,16 +17,9 @@ const LifestyleGallery = () => {
     const { isDark } = useTheme();
 
     return (
-        <section
-            style={{
-                padding: '6rem 0',
-                background: 'var(--color-bg)',
-                width: '100%',
-                overflow: 'hidden'
-            }}
-        >
+        <section className="py-24 px-6 md:px-12 lg:px-20 w-full overflow-hidden bg-[var(--color-bg)]">
             <motion.div
-                style={{ textAlign: 'center', marginBottom: '4rem', padding: '0 5%' }}
+                className="text-center mb-16"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.2 }}
@@ -34,36 +27,27 @@ const LifestyleGallery = () => {
                     hidden: { opacity: 0 },
                     visible: {
                         opacity: 1,
-                        transition: {
-                            staggerChildren: 0.2
-                        }
+                        transition: { staggerChildren: 0.2 }
                     }
                 }}
             >
                 <motion.h2
                     variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                    style={{
-                        fontSize: '2.5rem',
-                        fontWeight: 400,
-                        color: 'var(--color-text)',
-                        letterSpacing: '4px',
-                        textTransform: 'uppercase',
-                        marginBottom: '1rem'
-                    }}
+                    className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-[0.2em] uppercase mb-4"
                 >
                     Experiencie o Lusso
                 </motion.h2>
                 <motion.div
                     variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 0.5, y: 0 } }}
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+                    className="flex items-center justify-center gap-2 text-primary"
                 >
-                    <Instagram size={18} />
-                    <span style={{ fontSize: '0.9rem', fontWeight: 600, letterSpacing: '1px' }}>@LUSSOFUTURA</span>
+                    <Instagram size={20} />
+                    <span className="text-sm font-bold tracking-widest uppercase">@LUSSOFUTURA</span>
                 </motion.div>
             </motion.div>
 
             <motion.div
-                style={{ height: '600px', width: '100%' }}
+                className="h-[400px] md:h-[600px] w-full"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: false, amount: 0.2 }}
@@ -74,7 +58,7 @@ const LifestyleGallery = () => {
                     bend={3}
                     textColor={isDark ? "#ffffff" : "#000000"}
                     borderRadius={0.05}
-                    font="bold 30px Figtree"
+                    font="bold 24px Outfit"
                     autoplay={true}
                     autoplaySpeed={0.05}
                 />

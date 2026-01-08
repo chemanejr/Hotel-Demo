@@ -4,9 +4,9 @@ import { Instagram, Facebook, Twitter, Mail } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <footer style={{ background: 'var(--color-bg)', padding: '6rem 10%', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+        <footer className="bg-[var(--color-bg)] py-16 px-6 md:px-12 lg:px-20 border-t border-white/5">
             <motion.div
-                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '2rem' }}
+                className="max-w-7xl mx-auto flex flex-col items-center text-center gap-10"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.1 }}
@@ -14,30 +14,33 @@ const Footer = () => {
                     hidden: { opacity: 0 },
                     visible: {
                         opacity: 1,
-                        transition: {
-                            staggerChildren: 0.2
-                        }
+                        transition: { staggerChildren: 0.2 }
                     }
                 }}
             >
                 <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                    <h2 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--color-text)' }}>LUSSO FUTURA</h2>
-                    <p style={{ color: 'var(--color-text)', opacity: 0.5, fontSize: '0.9rem' }}>A redefinição da hospitalidade.</p>
+                    <h2 className="text-3xl font-bold mb-2 text-text tracking-widest">LUSSO FUTURA</h2>
+                    <p className="text-sm text-text/50 uppercase tracking-[0.3em]">A redefinição da hospitalidade.</p>
                 </motion.div>
 
                 <motion.div
-                    variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
-                    style={{ display: 'flex', gap: '2rem' }}
+                    variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } }}
+                    className="flex gap-8"
                 >
-                    <a href="#" style={{ color: 'var(--color-text)', opacity: 0.7, transition: '0.3s' }} className="social-link"><Instagram size={24} /></a>
-                    <a href="#" style={{ color: 'var(--color-text)', opacity: 0.7, transition: '0.3s' }} className="social-link"><Facebook size={24} /></a>
-                    <a href="#" style={{ color: 'var(--color-text)', opacity: 0.7, transition: '0.3s' }} className="social-link"><Twitter size={24} /></a>
-                    <a href="#" style={{ color: 'var(--color-text)', opacity: 0.7, transition: '0.3s' }} className="social-link"><Mail size={24} /></a>
+                    {[Instagram, Facebook, Twitter, Mail].map((Icon, i) => (
+                        <a
+                            key={i}
+                            href="#"
+                            className="text-text/60 hover:text-primary transition-all duration-300 transform hover:scale-125 hover:-translate-y-1"
+                        >
+                            <Icon size={24} />
+                        </a>
+                    ))}
                 </motion.div>
 
                 <motion.div
-                    variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.4 } }}
-                    style={{ color: 'var(--color-text)', fontSize: '0.8rem', marginTop: '2rem' }}
+                    variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.3 } }}
+                    className="text-[10px] uppercase font-bold tracking-[0.2em] text-text mt-4"
                 >
                     &copy; {new Date().getFullYear()} Lusso Futura Hotels. Todos os direitos reservados.
                 </motion.div>
