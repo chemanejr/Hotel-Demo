@@ -137,10 +137,10 @@ const Navbar = () => {
 
                     {/* Mobile Hamburger Button */}
                     <button
-                        className={`lg:hidden w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 active:scale-90
+                        className={`lg:hidden w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 active:scale-90 shadow-2xl
                             ${scrolled
-                                ? (isDark ? 'bg-white/5 text-white' : 'bg-slate-900/5 text-slate-900')
-                                : 'bg-white/10 text-white backdrop-blur-md border border-white/10'}`}
+                                ? (isDark ? 'bg-primary text-slate-900 shadow-primary/20' : 'bg-primary text-white shadow-primary/20')
+                                : 'bg-white/10 text-white backdrop-blur-md border border-white/20'}`}
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         aria-label="Toggle menu"
                     >
@@ -153,12 +153,12 @@ const Navbar = () => {
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, x: '100%' }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: '100%' }}
-                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className={`fixed inset-y-0 right-0 z-[999] p-8 pt-32 w-full max-w-sm flex flex-col shadow-2xl backdrop-blur-2xl
-                            ${isDark ? 'bg-slate-950/95 border-l border-white/10' : 'bg-white/95 border-l border-black/10'}`}
+                        initial={{ opacity: 0, y: '-100%' }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: '-100%' }}
+                        transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                        className={`fixed inset-0 z-[999] p-8 pt-32 flex flex-col items-center justify-center text-center
+                            ${isDark ? 'bg-slate-950' : 'bg-white'}`}
                     >
                         {/* Mobile Links */}
                         <div className="flex flex-col gap-6 mb-12">
@@ -171,7 +171,7 @@ const Navbar = () => {
                                 >
                                     <Link
                                         to={link.path}
-                                        className={`text-2xl font-bold tracking-tight no-underline transition-all duration-300 hover:pl-2
+                                        className={`text-4xl font-bold tracking-tighter no-underline transition-all duration-300
                                             ${isLinkActive(link) ? 'text-primary' : (isDark ? 'text-white' : 'text-slate-900')}`}
                                         onClick={() => setIsMenuOpen(false)}
                                     >
@@ -182,7 +182,7 @@ const Navbar = () => {
                         </div>
 
                         {/* Mobile Actions Footer */}
-                        <div className="mt-auto pt-8 border-t border-white/10 flex flex-col gap-8">
+                        <div className="mt-12 w-full max-w-xs pt-12 border-t border-primary/10 flex flex-col gap-8">
                             <div className="flex justify-between items-center">
                                 <div className="flex gap-4">
                                     {['PT', 'EN', 'FR'].map(lang => (

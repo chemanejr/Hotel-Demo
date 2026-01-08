@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Quote, Star } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const testimonials = [
     {
@@ -26,6 +27,7 @@ const testimonials = [
 
 const Testimonials = () => {
     const { isDark } = useTheme();
+    const { t } = useLanguage();
 
     return (
         <section className={`py-24 px-6 md:px-12 lg:px-20 w-full ${isDark ? 'bg-slate-950' : 'bg-slate-50'}`}>
@@ -51,7 +53,7 @@ const Testimonials = () => {
                     </motion.span>
                     <motion.h2
                         variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                        className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+                        className="text-4xl md:text-5xl font-bold mb-4"
                     >
                         {t('testimonials.title') || "O Que Dizem de Nós"}
                     </motion.h2>
