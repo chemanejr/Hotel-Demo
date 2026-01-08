@@ -30,10 +30,10 @@ const Testimonials = () => {
     const { t } = useLanguage();
 
     return (
-        <section className={`py-24 px-6 md:px-12 lg:px-20 w-full ${isDark ? 'bg-slate-950' : 'bg-slate-50'}`}>
+        <section className={`py-32 md:py-48 px-6 md:px-12 lg:px-20 w-full ${isDark ? 'bg-slate-950' : 'bg-slate-50'}`}>
             <div className="max-w-7xl mx-auto">
                 <motion.div
-                    className="text-center mb-16"
+                    className="text-center mb-24 md:mb-32"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: false, amount: 0.3 }}
@@ -45,21 +45,15 @@ const Testimonials = () => {
                         }
                     }}
                 >
-                    <motion.span
-                        variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                        className="text-primary font-bold tracking-widest uppercase text-xs mb-4 block"
-                    >
-                        Vozes dos Nossos Hóspedes
-                    </motion.span>
                     <motion.h2
                         variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                        className="text-4xl md:text-5xl font-bold mb-4"
+                        className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 uppercase tracking-tighter"
                     >
                         {t('testimonials.title') || "O Que Dizem de Nós"}
                     </motion.h2>
                     <motion.p
                         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.6, y: 0 } }}
-                        className="text-lg opacity-60 max-w-2xl mx-auto"
+                        className="text-lg md:text-xl max-w-2xl mx-auto uppercase tracking-[0.1em]"
                     >
                         A satisfação dos nossos hórpedes é a nossa maior recompensa.
                     </motion.p>

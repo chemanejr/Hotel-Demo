@@ -23,10 +23,10 @@ const Services = () => {
     return (
         <section
             id="services"
-            className="min-h-screen w-full py-24 px-6 md:px-12 lg:px-20 bg-[var(--color-bg)] relative scroll-mt-24"
+            className="min-h-screen w-full py-32 md:py-48 px-6 md:px-12 lg:px-20 bg-[var(--color-bg)] relative scroll-mt-24"
         >
             <motion.div
-                className="max-w-7xl mx-auto mb-16 text-center"
+                className="max-w-7xl mx-auto mb-24 md:mb-32 text-center"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
@@ -38,23 +38,17 @@ const Services = () => {
                     }
                 }}
             >
-                <motion.span
-                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                    className="text-primary font-bold tracking-widest uppercase text-xs mb-4 block"
-                >
-                    Experiência Imersiva
-                </motion.span>
                 <motion.h2
                     variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                    className="text-4xl md:text-5xl font-bold mb-4"
+                    className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 uppercase tracking-tighter"
                 >
                     O Que Oferecemos
                 </motion.h2>
                 <motion.p
                     variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.6, y: 0 } }}
-                    className="text-lg max-w-2xl mx-auto"
+                    className="text-lg md:text-xl max-w-2xl mx-auto uppercase tracking-[0.1em]"
                 >
-                    Mais do que uma estadia, uma jornada de luxo e bem-estar em todos os sentidos.
+                    Uma jornada de luxo e bem-estar.
                 </motion.p>
             </motion.div>
 

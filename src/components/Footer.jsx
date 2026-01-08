@@ -4,9 +4,9 @@ import { Instagram, Facebook, Twitter, Mail } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <footer className="bg-[var(--color-bg)] py-16 px-6 md:px-12 lg:px-20 border-t border-white/5">
+        <footer className="bg-[var(--color-bg)] py-24 md:py-32 px-6 md:px-12 lg:px-20 border-t border-white/5">
             <motion.div
-                className="max-w-7xl mx-auto flex flex-col items-center text-center gap-10"
+                className="max-w-7xl mx-auto flex flex-col items-center text-center gap-16"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.1 }}

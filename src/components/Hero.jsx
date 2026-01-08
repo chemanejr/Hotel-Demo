@@ -50,7 +50,7 @@ const Hero = () => {
 
                     <motion.h1
                         variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                        className="text-4xl md:text-6xl lg:text-8xl font-bold text-white mb-6 leading-[1.1] tracking-tighter uppercase"
+                        className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-8 leading-[1.05] tracking-tighter uppercase"
                         style={{ textShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
                     >
                         {t('hero.title')}
@@ -58,7 +58,7 @@ const Hero = () => {
 
                     <motion.p
                         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.8, y: 0 } }}
-                        className="text-lg md:text-xl lg:text-2xl text-slate-200 mb-10 max-w-3xl mx-auto font-medium uppercase tracking-[0.05em]"
+                        className="text-lg md:text-xl text-slate-200 mb-12 max-w-2xl mx-auto font-medium uppercase tracking-[0.1em] leading-relaxed"
                         style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
                     >
                         {t('hero.subtitle')}

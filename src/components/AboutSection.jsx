@@ -11,13 +11,13 @@ const AboutSection = () => {
     return (
         <section
             id="about"
-            className={`min-h-[80vh] w-full py-24 px-6 md:px-12 lg:px-20 overflow-hidden relative transition-colors duration-500
+            className={`min-h-[80vh] w-full py-32 md:py-48 px-6 md:px-12 lg:px-20 overflow-hidden relative transition-colors duration-500
                 ${isDark ? 'bg-slate-950 text-white' : 'bg-white text-slate-900'}`}
         >
             {/* Top Blend Gradient */}
             {isDark && <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black to-transparent pointer-events-none opacity-50" />}
 
-            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24 relative z-10">
+            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-24 lg:gap-32 xl:gap-40 relative z-10">
                 <div className="flex-1 w-full order-2 lg:order-1 text-center lg:text-left">
                     <motion.div
                         initial="hidden"
