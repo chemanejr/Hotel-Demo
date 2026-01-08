@@ -50,7 +50,7 @@ const Hero = () => {
 
                     <motion.h1
                         variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                        className="text-4xl md:text-6xl lg:text-8xl font-bold text-white mb-6 leading-[1.1] tracking-tighter"
+                        className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-[1.1] tracking-tighter"
                         style={{ textShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
                     >
                         {t('hero.title')}

@@ -137,11 +137,14 @@ const Navbar = () => {
 
                     {/* Mobile Hamburger Button */}
                     <button
-                        className={`lg:hidden w-10 h-10 flex items-center justify-center transition-colors
-                            ${scrolled ? 'text-text' : 'text-white'}`}
+                        className={`lg:hidden w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 active:scale-90
+                            ${scrolled
+                                ? (isDark ? 'bg-white/5 text-white' : 'bg-slate-900/5 text-slate-900')
+                                : 'bg-white/10 text-white backdrop-blur-md border border-white/10'}`}
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        aria-label="Toggle menu"
                     >
-                        {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
                 </div>
             </motion.nav>
@@ -154,8 +157,8 @@ const Navbar = () => {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: '100%' }}
                         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className={`fixed inset-0 z-[999] p-8 pt-24 lg:hidden flex flex-col h-screen
-                            ${isDark ? 'bg-slate-900' : 'bg-white'}`}
+                        className={`fixed inset-y-0 right-0 z-[999] p-8 pt-32 w-full max-w-sm flex flex-col shadow-2xl backdrop-blur-2xl
+                            ${isDark ? 'bg-slate-950/95 border-l border-white/10' : 'bg-white/95 border-l border-black/10'}`}
                     >
                         {/* Mobile Links */}
                         <div className="flex flex-col gap-6 mb-12">
@@ -168,8 +171,8 @@ const Navbar = () => {
                                 >
                                     <Link
                                         to={link.path}
-                                        className={`text-3xl font-bold tracking-tighter no-underline
-                                            ${isLinkActive(link) ? 'text-primary' : 'text-text'}`}
+                                        className={`text-2xl font-bold tracking-tight no-underline transition-all duration-300 hover:pl-2
+                                            ${isLinkActive(link) ? 'text-primary' : (isDark ? 'text-white' : 'text-slate-900')}`}
                                         onClick={() => setIsMenuOpen(false)}
                                     >
                                         {link.name}

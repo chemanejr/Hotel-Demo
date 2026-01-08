@@ -51,9 +51,9 @@ const Testimonials = () => {
                     </motion.span>
                     <motion.h2
                         variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                        className="text-4xl md:text-5xl font-bold mb-4"
+                        className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
                     >
-                        O Que Dizem de Nós
+                        {t('testimonials.title') || "O Que Dizem de Nós"}
                     </motion.h2>
                     <motion.p
                         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.6, y: 0 } }}
