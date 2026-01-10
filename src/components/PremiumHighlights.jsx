@@ -50,7 +50,7 @@ const PremiumHighlights = () => {
 
     return (
         <section
-            className={`px-16 md:px-32 w-full overflow-hidden ${isDark ? 'bg-slate-950' : 'bg-slate-50'}`}
+            className="px-16 md:px-32 w-full overflow-hidden bg-[var(--color-bg)] transition-colors duration-500"
             style={{ paddingTop: '140px', paddingBottom: '140px' }}
         >
             <motion.div
@@ -91,7 +91,7 @@ const PremiumHighlights = () => {
                                 {item.title}
                             </h3>
 
-                            <p className={`text-sm leading-[1.8] font-medium ${isDark ? 'text-slate-400' : 'text-slate-500'} max-w-[240px]`}>
+                            <p className="text-sm leading-[1.8] font-medium opacity-60 text-text max-w-[240px]">
                                 {item.description}
                             </p>
                         </motion.div>

@@ -13,7 +13,7 @@ const AboutPage = () => {
             className="about-page bg-[var(--color-bg)]"
         >
             {/* Minimalist Hero */}
-            <section className="h-[50vh] md:h-[60vh] flex items-center justify-center bg-slate-950 text-white text-center px-6">
+            <section className="h-[50vh] md:h-[60vh] flex items-center justify-center bg-[var(--color-bg)] text-text text-center px-6">
                 <motion.div
                     initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -53,7 +53,7 @@ const AboutPage = () => {
             </section>
 
             {/* Values Section */}
-            <section className="py-24 px-6 md:px-12 lg:px-20 bg-primary/5">
+            <section className="py-24 px-6 md:px-12 lg:px-20 bg-[var(--color-glass-dark)]">
                 <div className="max-w-7xl mx-auto text-center">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-16 text-text">Os Nossos Pilares</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">

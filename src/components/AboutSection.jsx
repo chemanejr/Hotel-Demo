@@ -14,8 +14,7 @@ const AboutSection = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: false }}
-            className={`min-h-[70vh] w-full px-6 md:px-12 lg:px-24 overflow-hidden relative transition-colors duration-500
-                ${isDark ? 'bg-slate-950 text-white' : 'bg-white text-slate-900'}`}
+            className="min-h-[70vh] w-full px-6 md:px-12 lg:px-24 overflow-hidden relative transition-colors duration-500 bg-[var(--color-bg)] text-[var(--color-text)]"
             style={{ padding: '160px 0' }}
         >
             {/* Top Blend Gradient */}
@@ -62,8 +61,7 @@ const AboutSection = () => {
                                     transition: { duration: 1, ease: [0.16, 1, 0.3, 1] }
                                 }
                             }}
-                            className={`text-4xl md:text-5xl lg:text-[3.8rem] font-serif font-medium leading-[1.2] tracking-tight
-                                ${isDark ? 'text-white' : 'text-slate-900'}`}
+                            className="text-4xl md:text-5xl lg:text-[3.8rem] font-serif font-medium leading-[1.2] tracking-tight text-text"
                             style={{ fontFamily: "'Playfair Display', serif", marginBottom: '16px' }}
                         >
                             {t('about.title')}
@@ -78,8 +76,7 @@ const AboutSection = () => {
                                     transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
                                 }
                             }}
-                            className={`text-base md:text-lg leading-relaxed max-w-xl mx-auto md:mx-0 font-light
-                                ${isDark ? 'text-slate-300' : 'text-slate-600'}`}
+                            className="text-base md:text-lg leading-relaxed max-w-xl mx-auto md:mx-0 font-light text-text/80"
                             style={{ marginBottom: '24px' }}
                         >
                             {t('about.desc')}

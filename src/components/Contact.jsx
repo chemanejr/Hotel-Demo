@@ -15,7 +15,7 @@ const Contact = () => {
     return (
         <section
             id="contact"
-            className={`w-full px-6 md:px-12 lg:px-20 relative overflow-hidden ${isDark ? 'bg-slate-950' : 'bg-slate-50'}`}
+            className="w-full px-6 md:px-12 lg:px-20 relative overflow-hidden bg-[var(--color-bg)] transition-colors duration-500"
             style={{ padding: '160px 0' }}
         >
             <div className="desktop-shift-contact-header">
@@ -93,8 +93,7 @@ const Contact = () => {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false }}
-                    className={`mt-24 p-8 md:p-16 rounded-[3rem] max-w-4xl mx-auto border transition-all duration-500
-                        ${isDark ? 'bg-slate-900 border-white/5' : 'bg-white border-black/5 shadow-2xl'}`}
+                    className="mt-24 p-8 md:p-16 rounded-[3rem] max-w-4xl mx-auto border transition-all duration-500 bg-[var(--color-glass)] border-glass-border shadow-2xl"
                 >
                     <div className="text-center mb-10">
                         <span className="inline-block py-2 px-6 bg-primary/10 rounded-full text-primary text-xs font-bold tracking-[0.2em] mb-4">
@@ -107,28 +106,23 @@ const Contact = () => {
                     <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="flex flex-col gap-2">
                             <label className="text-[10px] font-bold uppercase tracking-widest opacity-60 ml-2">Nome</label>
-                            <input type="text" className={`p-4 rounded-xl border outline-none transition-all focus:border-primary
-                                ${isDark ? 'bg-slate-950 border-white/10 text-white' : 'bg-slate-50 border-black/10'}`} />
+                            <input type="text" className="p-4 rounded-xl border outline-none transition-all focus:border-primary bg-[var(--color-glass-dark)] border-glass-border text-text" />
                         </div>
                         <div className="flex flex-col gap-2">
                             <label className="text-[10px] font-bold uppercase tracking-widest opacity-60 ml-2">Apelido</label>
-                            <input type="text" className={`p-4 rounded-xl border outline-none transition-all focus:border-primary
-                                ${isDark ? 'bg-slate-950 border-white/10 text-white' : 'bg-slate-50 border-black/10'}`} />
+                            <input type="text" className="p-4 rounded-xl border outline-none transition-all focus:border-primary bg-[var(--color-glass-dark)] border-glass-border text-text" />
                         </div>
                         <div className="flex flex-col gap-2">
                             <label className="text-[10px] font-bold uppercase tracking-widest opacity-60 ml-2">Telemóvel</label>
-                            <input type="tel" className={`p-4 rounded-xl border outline-none transition-all focus:border-primary
-                                ${isDark ? 'bg-slate-950 border-white/10 text-white' : 'bg-slate-50 border-black/10'}`} />
+                            <input type="tel" className="p-4 rounded-xl border outline-none transition-all focus:border-primary bg-[var(--color-glass-dark)] border-glass-border text-text" />
                         </div>
                         <div className="flex flex-col gap-2">
                             <label className="text-[10px] font-bold uppercase tracking-widest opacity-60 ml-2">Email</label>
-                            <input type="email" placeholder="exemplo@email.com" className={`p-4 rounded-xl border outline-none transition-all focus:border-primary
-                                ${isDark ? 'bg-slate-950 border-white/10 text-white' : 'bg-slate-50 border-black/10'}`} />
+                            <input type="email" placeholder="exemplo@email.com" className="p-4 rounded-xl border outline-none transition-all focus:border-primary bg-[var(--color-glass-dark)] border-glass-border text-text" />
                         </div>
                         <div className="md:col-span-2 flex flex-col gap-2">
                             <label className="text-[10px] font-bold uppercase tracking-widest opacity-60 ml-2">Mensagem</label>
-                            <textarea rows="4" placeholder="Como podemos ajudar?" className={`p-4 rounded-xl border outline-none transition-all focus:border-primary resize-none
-                                ${isDark ? 'bg-slate-950 border-white/10 text-white' : 'bg-slate-50 border-black/10'}`} />
+                            <textarea rows="4" placeholder="Como podemos ajudar?" className="p-4 rounded-xl border outline-none transition-all focus:border-primary resize-none bg-[var(--color-glass-dark)] border-glass-border text-text" />
                         </div>
                         <div className="md:col-span-2 mt-4">
                             <button className="btn-primary w-full py-5 text-sm font-bold uppercase tracking-[0.3em] shadow-2xl shadow-primary/20 transition-transform active:scale-95">
