@@ -48,17 +48,20 @@ const ServiceDetail = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            xml:exit={{ opacity: 0 }}
-            className="page-container"
-            style={{ paddingTop: '120px', paddingBottom: '4rem', paddingLeft: '10%', paddingRight: '10%' }}
+            exit={{ opacity: 0 }}
+            className="page-container px-6 md:px-[10%]"
+            style={{
+                paddingTop: typeof window !== 'undefined' && window.innerWidth < 1024 ? '100px' : '140px',
+                paddingBottom: '4rem'
+            }}
         >
             <Link to="/#services" className="service-detail-back" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', marginBottom: '2rem' }}>
                 <ArrowLeft size={20} /> Voltar ao Início
             </Link>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8rem', marginBottom: '4rem', alignItems: 'start' }}>
-                <div style={{ borderRadius: '12px', overflow: 'hidden', height: '450px' }}>
-                    <img src={data.images[0]} alt={data.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-32 mb-16 lg:mb-24 items-start">
+                <div className="rounded-2xl overflow-hidden h-[300px] md:h-[450px]">
+                    <img src={data.images[0]} alt={data.title} className="w-full h-full object-cover" />
                 </div>
 
                 <motion.div
@@ -78,36 +81,33 @@ const ServiceDetail = () => {
                 >
                     <motion.h1
                         variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
-                        className="service-detail-title"
-                        style={{ fontSize: '3.5rem', fontWeight: 700, marginBottom: '0', lineHeight: 1.1 }}
+                        className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1]"
                     >
                         {data.title}
                     </motion.h1>
                     <motion.h2
                         variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
-                        style={{ fontSize: '1.5rem', color: 'var(--color-primary)', marginBottom: '1rem' }}
+                        className="text-xl md:text-2xl text-primary"
                     >
                         {data.subtitle}
                     </motion.h2>
 
                     <motion.p
                         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.8, y: 0 } }}
-                        className="service-detail-description"
-                        style={{ fontSize: '1.1rem', lineHeight: '1.8' }}
+                        className="text-base md:text-lg leading-relaxed opacity-80"
                     >
                         {data.description}
                     </motion.p>
 
                     <motion.ul
                         variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
-                        style={{ listStyle: 'none', marginBottom: '1rem' }}
+                        className="list-none space-y-1"
                     >
                         {data.features.map((feat, i) => (
                             <motion.li
                                 key={i}
                                 variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }}
-                                className="service-detail-feature"
-                                style={{ padding: '0.5rem 0', borderBottom: '1px solid #e2e8f0' }}
+                                className="py-2 border-b border-black/5 dark:border-white/5 opacity-70"
                             >
                                 • {feat}
                             </motion.li>
@@ -117,41 +117,21 @@ const ServiceDetail = () => {
                     <motion.button
                         variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } }}
                         onClick={() => openBooking({ roomType: data.title })}
-                        style={{
-                            padding: '1rem 3rem',
-                            backgroundColor: '#1a9cb0',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            fontSize: '1rem',
-                            letterSpacing: '0.1em',
-                            textTransform: 'uppercase',
-                            borderRadius: '0.25rem',
-                            border: 'none',
-                            cursor: 'pointer',
-                            alignSelf: 'flex-start',
-                            marginLeft: '7rem',
-                            transition: 'background-color 0.3s'
-                        }}
-                        onMouseEnter={(e) => e.target.style.backgroundColor = '#158a9c'}
-                        onMouseLeave={(e) => e.target.style.backgroundColor = '#1a9cb0'}
+                        className="mt-4 px-10 py-4 bg-[#1a9cb0] hover:bg-[#158a9c] text-white font-bold text-sm tracking-widest uppercase rounded transition-colors self-start"
                     >
                         RESERVAR AGORA
                     </motion.button>
                 </motion.div>
             </div>
 
-            <div style={{ borderRadius: '12px', overflow: 'hidden', height: '500px', width: '100%', marginBottom: '6rem' }}>
-                <img src={data.images[1]} alt="Detail View" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div className="rounded-2xl overflow-hidden h-[400px] md:h-[600px] mb-20 lg:mb-32">
+                <img src={data.images[1]} alt="Detail View" className="w-full h-full object-cover" />
             </div>
 
             {/* Cross-selling Section */}
-            <div style={{
-                borderTop: '1px solid rgba(0,0,0,0.05)',
-                paddingTop: '6rem',
-                textAlign: 'center'
-            }}>
-                <h3 style={{ fontSize: '2rem', fontWeight: 600, marginBottom: '1.5rem' }}>Complete a sua Experiência</h3>
-                <p style={{ opacity: 0.6, marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem' }}>
+            <div className="border-t border-black/5 dark:border-white/5 pt-20 lg:pt-32 text-center">
+                <h3 className="text-3xl lg:text-4xl font-bold mb-6">Complete a sua Experiência</h3>
+                <p className="opacity-60 mb-12 max-w-2xl mx-auto px-4">
                     Aproveite ao máximo o {data.title} hospedando-se numa das nossas suítes exclusivas projetadas para o seu descanso.
                 </p>
                 <Link

@@ -23,10 +23,16 @@ const Services = () => {
     return (
         <section
             id="services"
-            className="min-h-screen w-full py-32 md:py-48 px-6 md:px-12 lg:px-20 bg-[var(--color-bg)] relative scroll-mt-24"
+            className="min-h-screen w-full px-6 md:px-12 lg:px-20 bg-[var(--color-bg)] relative scroll-mt-24"
+            style={{ padding: '160px 0' }}
         >
             <motion.div
-                className="max-w-7xl mx-auto mb-24 md:mb-32 text-center"
+                className="max-w-7xl mx-auto mb-20 md:mb-32 text-center"
+                style={{
+                    transform: typeof window !== 'undefined' && window.innerWidth >= 1024
+                        ? 'translate(152px, -76px)'
+                        : 'translateY(calc(-38px + 0.1cm))'
+                }}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
@@ -40,24 +46,37 @@ const Services = () => {
             >
                 <motion.h2
                     variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                    className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 uppercase tracking-tighter"
+                    className="text-4xl md:text-3xl lg:text-5xl font-bold mb-1 tracking-tight"
                 >
                     O Que Oferecemos
                 </motion.h2>
                 <motion.p
-                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.6, y: 0 } }}
-                    className="text-lg md:text-xl max-w-2xl mx-auto uppercase tracking-[0.1em]"
+                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.5, y: 0 } }}
+                    className="text-lg md:text-xl max-w-2xl mx-auto font-medium md:translate-x-[8.25cm] translate-y-[-0.05cm] md:translate-y-[0.15cm]"
                 >
                     Uma jornada de luxo e bem-estar.
                 </motion.p>
             </motion.div>
 
-            <div className="max-w-7xl mx-auto">
-                <MotionCarousel
-                    slides={services}
-                    options={{ loop: true, align: 'center' }}
-                    linkBuilder={(service) => `/${service.id}`}
-                />
+            <div
+                className="w-full overflow-visible"
+                style={{
+                    transform: typeof window !== 'undefined' && window.innerWidth >= 1024
+                        ? 'translate(152px, -62px)'
+                        : 'translateY(-20px)'
+                }}
+            >
+                <div className="max-w-7xl mx-auto overflow-visible">
+                    <MotionCarousel
+                        slides={services}
+                        options={{
+                            loop: true,
+                            align: 'center',
+                            containScroll: false
+                        }}
+                        linkBuilder={(service) => `/${service.id}`}
+                    />
+                </div>
             </div>
         </section>
     );

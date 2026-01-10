@@ -24,7 +24,7 @@ const Hero = () => {
             {/* Dark Gradient Overlay for text contrast */}
             <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/60 via-black/30 to-black/80" />
 
-            <div className="hero-content relative z-[2] w-full max-w-7xl px-6 md:px-12 lg:px-20 text-center">
+            <div className="hero-content relative z-[2] w-full max-w-screen-2xl px-6 md:px-12 lg:px-20 text-center">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -39,46 +39,70 @@ const Hero = () => {
                             }
                         }
                     }}
+                    className="flex flex-col items-center gap-12"
                 >
                     <motion.span
-                        variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                        className="block text-primary font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-4"
-                        style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}
+                        variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.8, y: 0 } }}
+                        className="block text-white/70 font-bold tracking-[0.5em] uppercase text-[10px] md:text-xs"
+                        style={{ marginTop: '57px' }}
                     >
-                        {t('hero.welcome')}
+                        BEM-VINDO AO FUTURO
                     </motion.span>
 
                     <motion.h1
                         variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                        className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-8 leading-[1.05] tracking-tighter uppercase"
-                        style={{ textShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
+                        className="text-5xl md:text-7xl lg:text-[5.2rem] font-black text-white leading-[0.9] tracking-[-0.02em] uppercase"
                     >
-                        {t('hero.title')}
+                        LUSSO<br className="md:hidden" /> FUTURA
                     </motion.h1>
 
                     <motion.p
-                        variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.8, y: 0 } }}
-                        className="text-lg md:text-xl text-slate-200 mb-12 max-w-2xl mx-auto font-medium uppercase tracking-[0.1em] leading-relaxed"
-                        style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+                        variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.9, y: 0 } }}
+                        className="text-[10px] md:text-xs lg:text-[13px] text-white/70 max-w-4xl mx-auto font-bold uppercase tracking-[0.35em] leading-[1.8]"
                     >
-                        {t('hero.subtitle')}
+                        A CONVERGÊNCIA PERFEITA ENTRE LUXO, TECNOLOGIA<br className="hidden md:block" /> E CONFORTO ABSOLUTO.
                     </motion.p>
 
                     <motion.div
                         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                        className="flex flex-col sm:flex-row items-center gap-4 justify-center"
+                        className="flex flex-col sm:flex-row items-center gap-8 justify-center"
                     >
-                        <button
-                            onClick={openBooking}
-                            className="btn-primary w-full sm:w-auto py-4 px-10 text-sm font-bold uppercase tracking-widest"
-                        >
-                            {t('hero.cta_book')}
-                        </button>
+                        <div className="relative group flex-shrink-0 desktop-shift-hero-book">
+                            {/* 3D Decorative layer behind the button */}
+                            <div
+                                className="absolute inset-0 bg-[#009fb7] translate-x-1.5 translate-y-1.5 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
+                                style={{
+                                    width: '260px',
+                                    height: '64px',
+                                    clipPath: 'polygon(10% 0, 100% 0, 100% 85%, 90% 100%, 0 100%, 0 15%)'
+                                }}
+                            />
+                            <button
+                                onClick={openBooking}
+                                className="relative bg-[#00f2ff] text-black text-[16px] md:text-[18px] font-black uppercase tracking-[0.2em] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 pointer-events-auto flex items-center justify-center flex-shrink-0"
+                                style={{
+                                    width: '100%',
+                                    maxWidth: '280px',
+                                    minWidth: '240px',
+                                    height: '64px',
+                                    clipPath: 'polygon(10% 0, 100% 0, 100% 85%, 90% 100%, 0 100%, 0 15%)'
+                                }}
+                            >
+                                {t('hero.cta_book')}
+                            </button>
+                        </div>
+
                         <button
                             onClick={() => navigate('/rooms')}
-                            className="btn-secondary w-full sm:w-auto py-4 px-10 text-sm font-bold uppercase tracking-widest border-white !text-white hover:bg-white hover:!text-black transition-all bg-white/5 backdrop-blur-sm"
+                            className="bg-transparent border border-white/40 hover:border-white hover:bg-white/5 text-white text-[16px] md:text-[18px] font-black uppercase tracking-[0.2em] transition-all duration-300 pointer-events-auto flex items-center justify-center flex-shrink-0"
+                            style={{
+                                width: '100%',
+                                maxWidth: '280px',
+                                minWidth: '240px',
+                                height: '64px'
+                            }}
                         >
-                            {t('hero.cta_rooms')}
+                            VER QUARTOS
                         </button>
                     </motion.div>
                 </motion.div>

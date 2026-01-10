@@ -8,7 +8,7 @@ const translations = {
             rooms: 'Quartos',
             experiences: 'Experiências',
             contact: 'Contactos',
-            book: 'Reservar'
+            book: 'Reservar Agora'
         },
         hero: {
             welcome: 'BEM-VINDO AO FUTURO',
@@ -19,8 +19,8 @@ const translations = {
         },
         about: {
             pre: 'A NOSSA ESSÊNCIA',
-            title: 'Onde o Futuro encontra o Legado',
-            desc: 'O Lusso Futura não é apenas um hotel; é um manifesto arquitetónico sobre como a tecnologia pode elevar a experiência humana sem perder o calor da hospitalidade tradicional.',
+            title: 'A Arquitetura da Serenidade',
+            desc: 'No Lusso Futura, a tecnologia é invisível e o conforto é absoluto. Combinamos inovação de vanguarda com um design orgânico para criar espaços que convidam à desconexão e à celebração do momento presente.',
             cta: 'VER MAIS SOBRE NÓS'
         },
         availability: {
@@ -30,6 +30,12 @@ const translations = {
             deluxe: 'Quarto Deluxe',
             executive: 'Suíte Executiva',
             presidential: 'Suíte Presidencial'
+        },
+        testimonials: {
+            title: 'O QUE DIZEM DE NÓS'
+        },
+        contact: {
+            title: 'CONTACTOS'
         }
     },
     en: {
@@ -50,8 +56,8 @@ const translations = {
         },
         about: {
             pre: 'OUR ESSENCE',
-            title: 'Where Future meets Legacy',
-            desc: 'Lusso Futura is not just a hotel; it is an architectural manifesto on how technology can elevate the human experience without losing the warmth of traditional hospitality.',
+            title: 'The Architecture of Serenity',
+            desc: 'At Lusso Futura, technology is invisible and comfort is absolute. We combine cutting-edge innovation with organic design to create spaces that invite disconnection and the celebration of the present moment.',
             cta: 'LEARN MORE ABOUT US'
         },
         availability: {
@@ -61,6 +67,12 @@ const translations = {
             deluxe: 'Deluxe Room',
             executive: 'Executive Suite',
             presidential: 'Presidential Suite'
+        },
+        testimonials: {
+            title: 'WHAT OUR GUESTS SAY'
+        },
+        contact: {
+            title: 'CONTACT'
         }
     },
     fr: {
@@ -81,8 +93,8 @@ const translations = {
         },
         about: {
             pre: 'NOTRE ESSENCE',
-            title: 'Où le futur rencontre l\'héritage',
-            desc: 'Lusso Futura n\'est pas seulement un hôtel ; c\'est un manifeste architectural sur la façon dont la technologie peut élever l\'expérience humaine sans perdre la chaleur de l\'hospitalité traditionnelle.',
+            title: 'L\'Architecture de la Sérénité',
+            desc: 'Au Lusso Futura, la technologie est invisible et le confort est absolu. Nous combinons l\'innovation de pointe avec un design organique pour créer des espaces qui invitent à la déconnexion et à la célébration do moment présent.',
             cta: 'EN SAVOIR PLUS'
         },
         availability: {
@@ -92,6 +104,12 @@ const translations = {
             deluxe: 'Chambre Deluxe',
             executive: 'Suite Exécutive',
             presidential: 'Suite Présidentielle'
+        },
+        testimonials: {
+            title: 'CE QUE DISENT NOS CLIENTS'
+        },
+        contact: {
+            title: 'CONTACT'
         }
     }
 };

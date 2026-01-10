@@ -7,8 +7,8 @@
     /* White */
     --color-text: #0f172a;
     /* Slate 900 */
-    --color-primary: #0891b2;
-    /* Cyan 600 - darker for contrast on white */
+    --color-primary: #00f2ff;
+    /* Bright Cyan (matching Netlify) */
     --color-secondary: #d97706;
     /* Amber 600 */
     --color-glass: rgba(255, 255, 255, 0.7);
@@ -98,8 +98,8 @@
 
 /* Dark Theme - Navbar */
 .dark nav {
-    background: rgba(15, 23, 42, 0.8) !important;
-    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+    background: transparent;
+    border-bottom-color: rgba(255, 255, 255, 0.05);
     will-change: transform;
 }
 
@@ -330,13 +330,17 @@
     padding: 0;
 }
 
-html {
-    scroll-behavior: smooth;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
 }
 
 body {
     min-height: 100vh;
-    overflow-x: hidden;
     background: #f8fafc;
     /* Very light subtle gray for depth */
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -369,6 +373,11 @@ body {
     box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
 }
 
+.btn-rect {
+    clip-path: none !important;
+    border-radius: 4px;
+}
+
 .btn-secondary {
     background: transparent;
     color: currentColor;
@@ -398,11 +407,6 @@ body {
     position: relative;
     height: 100vh;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
 }
 
 .hero-bg {
@@ -431,6 +435,7 @@ body {
     opacity: 0.8;
 }
 
+/* Keeping basic overlay and background logic if needed, but sizes and padding moved to Tailwind */
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -441,35 +446,6 @@ body {
     z-index: 1;
 }
 
-.hero-content {
-    z-index: 10;
-    padding: 0 1rem;
-    max-width: 900px;
-}
-
-.hero-subtitle {
-    display: block;
-    font-size: 0.85rem;
-    letter-spacing: 4px;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-}
-
-.hero-title {
-    font-size: 4.5rem;
-    font-weight: 700;
-    line-height: 1.05;
-    margin-bottom: 2rem;
-    letter-spacing: -0.02em;
-}
-
-.hero-description {
-    font-size: 1.25rem;
-    color: #a0a0a0;
-    margin-bottom: 3rem;
-    font-weight: 300;
-}
 
 .scroll-indicator {
     position: absolute;
@@ -482,7 +458,7 @@ body {
 
 /* --- General Sections --- */
 .section-container {
-    padding: 10rem 10%;
+    padding: 16rem 12%;
     position: relative;
 }
 
@@ -708,8 +684,120 @@ body {
     }
 }
 
+@media (max-width: 1023px) {
+    .mobile-logo-shift {
+        margin-left: 19px !important;
+    }
+
+    .mobile-menu-shift {
+        margin-right: 19px !important;
+    }
+}
+
 @media (min-width: 769px) {
     .hidden.md\:flex {
         display: flex !important;
+    }
+}
+
+/* --- Custom Desktop Layout Shifts --- */
+.desktop-shift-contact-header {
+    transform: translateX(3.95cm) translateY(-2cm);
+}
+
+.desktop-shift-contact-info {
+    transform: translateX(8cm) translateY(-1cm);
+}
+
+.desktop-shift-contact-map {
+    transform: translateY(-1cm) translateX(3.5cm);
+}
+
+.desktop-shift-contact-form {
+    transform: translateX(8cm) translateY(2cm);
+}
+
+.desktop-shift-footer-branding {
+    transform: translateX(3cm) translateY(0.75cm);
+}
+
+.desktop-shift-footer-socials {
+    transform: translateX(3cm);
+}
+
+.desktop-shift-footer-copyright {
+    transform: translateX(3cm) translateY(-0.75cm);
+}
+
+.contact-value-box {
+    display: block;
+    transform: translateX(-1.75cm) translateY(0.35cm);
+}
+
+.contact-email-box {
+    transform: translateX(-2.5cm) translateY(0.35cm) !important;
+}
+
+.contact-standard-row-wrapper {
+    transform: translateX(0.3cm);
+}
+
+.contact-email-row-wrapper {
+    transform: translateX(0.5cm);
+}
+
+.contact-icon-wrapper {
+    display: inline-block;
+    transform: translateY(-0.1cm);
+}
+
+.desktop-shift-hero-book {
+    transform: translateX(-1cm);
+}
+
+.footer-subtitle-shift {
+    display: block;
+    transform: translateY(0.25cm);
+}
+
+@media (max-width: 1024px) {
+    .desktop-shift-contact-header {
+        transform: translateY(-2cm) translateX(-0.05cm) !important;
+    }
+
+    .desktop-shift-contact-info {
+        transform: translateX(4.0cm) !important;
+    }
+
+    .contact-value-box {
+        transform: translateX(-1.75cm) translateY(0.35cm) !important;
+    }
+
+    .contact-email-box {
+        transform: translateX(-2.5cm) translateY(0.35cm) !important;
+    }
+
+    .contact-standard-row-wrapper {
+        transform: translateX(0.3cm) !important;
+    }
+
+    .contact-email-row-wrapper {
+        transform: translateX(0.5cm) !important;
+    }
+
+    .contact-icon-wrapper {
+        transform: translateY(-0.1cm) !important;
+    }
+
+    .desktop-shift-contact-form {
+        transform: translateY(2.25cm) !important;
+    }
+
+    .desktop-shift-hero-book,
+    .desktop-shift-contact-map,
+    .desktop-shift-footer-branding,
+    .desktop-shift-footer-socials,
+    .desktop-shift-footer-copyright {
+        transform: none !important;
     }
 }

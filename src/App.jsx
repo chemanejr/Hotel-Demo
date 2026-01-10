@@ -11,7 +11,6 @@ import PremiumHighlights from './components/PremiumHighlights';
 import ServiceDetail from './components/ServiceDetail';
 import Contact from './components/Contact';
 import RoomsPage from './components/RoomsPage';
-import Testimonials from './components/Testimonials';
 import LifestyleGallery from './components/LifestyleGallery';
 import BookingModal from './components/BookingModal';
 import ServicesPage from './components/ServicesPage';
@@ -59,7 +58,6 @@ const AnimatedRoutes = () => {
                         <Rooms />
                         <PremiumHighlights />
                         <Services />
-                        <Testimonials />
                         <LifestyleGallery />
                         <Contact />
                     </>

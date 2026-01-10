@@ -9,31 +9,7 @@
     font-family: 'Playfair Display', serif;
 }
 
-.rooms-soul-waves {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.5;
-}
 
-.rooms-soul-waves svg {
-    width: 100%;
-    height: 200px;
-    animation: wave-float 10s infinite alternate ease-in-out;
-}
-
-@keyframes wave-float {
-    0% {
-        transform: translateY(0);
-    }
-
-    100% {
-        transform: translateY(20px);
-    }
-}
 
 .room-mood-text {
     display: block;
@@ -103,7 +79,7 @@
 }
 
 .rooms-main-title {
-    font-size: clamp(3.5rem, 8vw, 6rem);
+    font-size: clamp(2.5rem, 6vw, 4.2rem);
     line-height: 1.1;
     margin-bottom: 2rem;
     font-weight: 700;
@@ -111,7 +87,7 @@
 }
 
 .rooms-hero-sub {
-    font-size: 1.4rem;
+    font-size: 1.15rem;
     max-width: 600px;
     margin: 0 auto;
     opacity: 0.9;
@@ -121,18 +97,16 @@
 
 /* 2. Sticky Navigation Tabs */
 .rooms-tabs-sticky {
-    position: sticky;
-    top: 80px;
-    z-index: 50;
+    position: sticky !important;
+    top: 80px !important;
+    z-index: 1100 !important;
     height: 60px;
-    /* Precise height for framing calculation */
     display: flex;
     align-items: center;
     background: var(--color-bg);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(15px);
     scroll-margin-top: 80px;
-    /* Aligns with Navbar */
 }
 
 .dark .rooms-tabs-sticky {
@@ -166,16 +140,25 @@
 .rooms-tab-item:hover,
 .rooms-tab-item.active {
     opacity: 1;
+    color: #00f2ff;
+    /* Signature Cyan for contrast */
+}
+
+.rooms-tab-item.active {
+    background: rgba(8, 145, 178, 0.05);
+    /* Subtle background accent */
 }
 
 .rooms-tab-item.active::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     width: 100%;
-    height: 2px;
-    background: var(--color-primary);
+    height: 4px;
+    background: #00f2ff;
+    /* Vibrant indicator */
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
 }
 
 /* 3. Split Viewer Section */
@@ -316,17 +299,15 @@
 /* 4. Price Badge & Action (Premium Redesign) */
 .rooms-price-badge {
     position: absolute;
-    bottom: 2.5rem;
-    right: 2.5rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px) saturate(180%);
     -webkit-backdrop-filter: blur(15px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
-    padding: 1.5rem 2rem;
-    /* Reduced from 2.5rem 3rem */
+    padding: 1rem 1.5rem;
     border-radius: 4px;
-    /* Sharper, more modern */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -350,30 +331,26 @@
 }
 
 .price-label {
-    font-size: 0.6rem;
-    /* Smaller from 0.7rem */
+    font-size: 0.55rem;
     font-weight: 600;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     opacity: 0.6;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     text-transform: uppercase;
 }
 
 .price-value {
-    font-size: 2.5rem;
-    /* Reduced from 3.5rem */
+    font-size: 1.8rem;
     font-weight: 700;
     line-height: 1;
     font-family: 'Playfair Display', serif;
-    /* Soul injection */
     display: flex;
     align-items: flex-start;
 }
 
 .price-unit {
-    font-size: 0.75rem;
-    /* Reduced from 0.85rem */
-    margin-top: 0.4rem;
+    font-size: 0.65rem;
+    margin-top: 0.3rem;
     opacity: 0.5;
     font-weight: 400;
     letter-spacing: 0.5px;
@@ -449,22 +426,7 @@
 }
 
 /* 5. Animations: Ken Burns */
-.ken-burns {
-    animation: kenburns 20s infinite alternate linear;
-    will-change: transform;
-}
 
-@keyframes kenburns {
-    0% {
-        transform: scale(1);
-        transform-origin: center;
-    }
-
-    100% {
-        transform: scale(1.15);
-        transform-origin: center;
-    }
-}
 
 /* 6. Comparison Table */
 .rooms-comparison-section {
@@ -810,7 +772,17 @@ tr.highlight {
         height: 50vh;
     }
 
-    .rooms-side-info,
+    .rooms-split-viewer {
+        height: auto;
+        overflow: visible;
+    }
+
+    .rooms-side-info {
+        padding: 4rem 5%;
+        height: auto;
+        overflow: visible;
+    }
+
     .rooms-hero-content {
         padding: 4rem 5%;
     }

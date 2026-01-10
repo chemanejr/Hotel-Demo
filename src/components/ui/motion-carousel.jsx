@@ -87,8 +87,8 @@ function MotionCarousel({ slides, options, linkBuilder, getLabel }) {
     } = useEmblaControls(emblaApi);
 
     return (
-        <div className="w-full space-y-4 [--slide-height:450px] [--slide-spacing:1rem] [--slide-size:80%] md:[--slide-size:50%] lg:[--slide-size:40%]">
-            <div className="relative">
+        <div className="w-full space-y-2 overflow-visible [--slide-height:420px] md:[--slide-height:500px] [--slide-spacing:5rem] [--slide-size:85%] md:[--slide-size:55%] lg:[--slide-size:42%]">
+            <div className="relative overflow-visible">
                 <div className="overflow-visible" ref={emblaRef}>
                     <div className="flex touch-pan-y touch-pinch-zoom">
                         {slides.map((room, index) => {
@@ -101,19 +101,19 @@ function MotionCarousel({ slides, options, linkBuilder, getLabel }) {
                                     style={{ perspective: '1000px' }}
                                 >
                                     <motion.div
-                                        className="size-full relative rounded-xl overflow-hidden shadow-2xl border border-white/10 dark:border-white/20 bg-white dark:bg-gray-900 group"
+                                        className="size-full relative rounded-xl overflow-hidden shadow-2xl group"
                                         initial={false}
                                         animate={{
-                                            scale: isActive ? 1 : 0.85,
-                                            zIndex: isActive ? 10 : 0,
-                                            filter: isActive ? 'blur(0px)' : 'blur(4px)',
-                                            opacity: isActive ? 1 : 0.5
+                                            scale: isActive ? 1 : 0.9,
+                                            zIndex: isActive ? 10 : 1,
+                                            filter: isActive ? 'blur(0px)' : 'blur(8px)',
+                                            opacity: isActive ? 1 : 0.4
                                         }}
                                         transition={transition}
                                     >
                                         <div
                                             className="flex flex-col size-full transition-colors"
-                                            style={{ backgroundColor: isDark ? '#1f2937' : '#ffffff' }}
+                                            style={{ backgroundColor: isDark ? '#141c2b' : '#ffffff' }}
                                         >
                                             <div
                                                 className="flex-grow w-full bg-cover bg-center"
@@ -121,27 +121,59 @@ function MotionCarousel({ slides, options, linkBuilder, getLabel }) {
                                             />
 
                                             <div
-                                                className="w-full flex-none transition-colors px-6 md:px-12 py-3"
+                                                className="w-full flex-none transition-all duration-500 px-6 md:px-10"
                                                 style={{
-                                                    backgroundColor: isDark ? '#1f2937' : '#ffffff'
+                                                    backgroundColor: isDark ? '#141c2b' : '#ffffff',
+                                                    transform: 'translateY(-8px)', // Absolute minimal overlap
+                                                    paddingTop: '0.75rem',
+                                                    paddingBottom: '1rem',
+                                                    position: 'relative',
+                                                    zIndex: 10,
+                                                    boxShadow: '0 -2px 10px -5px rgba(0, 0, 0, 0.1)'
                                                 }}
                                             >
-                                                {/* Top Content: Title + Line and Button */}
+                                                {/* Adjusted Content Layout: Grouping Title, Line and Features */}
                                                 <div className="flex justify-between items-center gap-4">
-                                                    <div className="space-y-2">
+                                                    <div className="flex flex-col items-start" style={{
+                                                        position: 'relative',
+                                                        left: typeof window !== 'undefined' && window.innerWidth < 768 ? '19px' : '57px',
+                                                        top: typeof window !== 'undefined' && window.innerWidth < 768 ? '11px' : '0px'
+                                                    }}>
                                                         <h3
-                                                            className="text-2xl font-bold leading-tight transition-colors"
-                                                            style={{ color: isDark ? '#f3f4f6' : '#111827' }}
+                                                            className={`${typeof window !== 'undefined' && window.innerWidth < 768 ? 'text-lg' : 'text-2xl'} font-bold leading-tight transition-colors`}
+                                                            style={{
+                                                                color: isDark ? '#ffffff' : '#111827',
+                                                                marginLeft: (room.title === 'Quarto Deluxe' || room.title === 'Suíte Executiva') && (typeof window !== 'undefined' && window.innerWidth >= 768) ? '38px' : '0px'
+                                                            }}
                                                         >
                                                             {room.title}
                                                         </h3>
-                                                        <div className="h-[3px] w-full bg-cyan-700" />
+
+                                                        {/* Cyan Divider Line */}
+                                                        <div className="h-[2px] bg-[#229ca8] opacity-100 mt-2 mb-3 w-full" />
+
+                                                        {/* Features row */}
+                                                        {room.features && (
+                                                            <div className="flex gap-4 md:gap-6 opacity-80">
+                                                                {room.features.slice(0, 3).map((feat, i) => (
+                                                                    <div key={i} className="flex items-center gap-1 md:gap-2">
+                                                                        <span className="text-[#229ca8]" style={{ transform: typeof window !== 'undefined' && window.innerWidth < 768 ? 'scale(0.85)' : 'scale(1)' }}>{featureIcons[feat]}</span>
+                                                                        <span className="text-[8px] md:text-[10px] font-bold tracking-[0.15em] uppercase text-white/70">{feat}</span>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        )}
                                                     </div>
 
                                                     <motion.div
                                                         animate={isActive ? {
                                                             y: [0, -8, 0]
                                                         } : {}}
+                                                        style={{
+                                                            position: 'relative',
+                                                            right: typeof window !== 'undefined' && window.innerWidth < 768 ? '19px' : '57px',
+                                                            marginTop: typeof window !== 'undefined' && window.innerWidth < 768 ? '0.3cm' : '0px'
+                                                        }}
                                                         transition={{
                                                             duration: 2,
                                                             repeat: Infinity,
@@ -154,12 +186,13 @@ function MotionCarousel({ slides, options, linkBuilder, getLabel }) {
                                                                 const url = linkBuilder ? linkBuilder(room) : `/rooms#${room.id}`;
                                                                 window.location.href = url;
                                                             }}
-                                                            className="bg-[#1a9cb0] text-white font-bold text-sm tracking-widest shadow-md hover:bg-[#158a9c] transition-colors rounded whitespace-nowrap"
+                                                            className="bg-[#229ca8] text-white font-bold tracking-widest shadow-lg hover:brightness-110 transition-all rounded-md whitespace-nowrap"
                                                             style={{
-                                                                paddingLeft: '2rem',
-                                                                paddingRight: '2rem',
-                                                                paddingTop: '0.75rem',
-                                                                paddingBottom: '0.75rem',
+                                                                fontSize: typeof window !== 'undefined' && window.innerWidth < 768 ? '12.5px' : '13px',
+                                                                paddingLeft: typeof window !== 'undefined' && window.innerWidth < 768 ? '1.25rem' : '2rem',
+                                                                paddingRight: typeof window !== 'undefined' && window.innerWidth < 768 ? '1.25rem' : '2rem',
+                                                                paddingTop: typeof window !== 'undefined' && window.innerWidth < 768 ? '0.75rem' : '0.85rem',
+                                                                paddingBottom: typeof window !== 'undefined' && window.innerWidth < 768 ? '0.75rem' : '0.85rem',
                                                                 display: 'inline-block',
                                                                 cursor: 'pointer'
                                                             }}
@@ -168,18 +201,6 @@ function MotionCarousel({ slides, options, linkBuilder, getLabel }) {
                                                         </button>
                                                     </motion.div>
                                                 </div>
-
-                                                {/* Features row */}
-                                                {room.features && (
-                                                    <div className="flex gap-6 opacity-60">
-                                                        {room.features.slice(0, 3).map((feat, i) => (
-                                                            <div key={i} className="flex items-center gap-2">
-                                                                <span style={{ color: 'var(--color-primary)' }}>{featureIcons[feat]}</span>
-                                                                <span className="text-[10px] font-bold tracking-[0.15em] uppercase">{feat}</span>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                )}
                                             </div>
                                         </div>
                                     </motion.div>
@@ -192,21 +213,21 @@ function MotionCarousel({ slides, options, linkBuilder, getLabel }) {
                 <button
                     onClick={onPrev}
                     disabled={prevDisabled}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-20 rounded-md bg-[#1a9cb0] text-white hover:bg-[#158a9c] disabled:opacity-30 transition-colors shadow-lg"
+                    className="absolute left-[2%] md:left-[10%] lg:left-[13%] top-[45%] md:top-[9rem] z-20 flex items-center justify-center w-10 h-16 rounded-md bg-[#229ca8] text-white hover:brightness-110 disabled:opacity-30 transition-all shadow-xl"
                 >
-                    <ChevronLeft className="size-7" />
+                    <ChevronLeft className="size-7 stroke-[3]" />
                 </button>
 
                 <button
                     onClick={onNext}
                     disabled={nextDisabled}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-20 rounded-md bg-[#1a9cb0] text-white hover:bg-[#158a9c] disabled:opacity-30 transition-colors shadow-lg"
+                    className="absolute right-[2%] md:right-[10%] lg:right-[13%] top-[45%] md:top-[9rem] z-20 flex items-center justify-center w-10 h-16 rounded-md bg-[#229ca8] text-white hover:brightness-110 disabled:opacity-30 transition-all shadow-xl"
                 >
-                    <ChevronRight className="size-7" />
+                    <ChevronRight className="size-7 stroke-[3]" />
                 </button>
             </div>
 
-            <div className="flex justify-center items-center gap-2" style={{ marginTop: '1.5rem' }}>
+            <div className="flex justify-center items-center gap-2" style={{ marginTop: '0.75rem' }}>
                 {scrollSnaps.map((_, index) => (
                     <DotButton
                         key={index}
@@ -227,7 +248,7 @@ function DotButton({ selected = false, onClick }) {
             onClick={onClick}
             layout
             initial={false}
-            className="flex cursor-pointer select-none items-center justify-center rounded-full border-none bg-[#1a9cb0]"
+            className="flex cursor-pointer select-none items-center justify-center rounded-full border-none bg-[#229ca8]"
             animate={{
                 width: selected ? 14 : 10,
                 height: selected ? 14 : 10,

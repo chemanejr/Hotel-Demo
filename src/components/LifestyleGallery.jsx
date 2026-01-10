@@ -17,9 +17,12 @@ const LifestyleGallery = () => {
     const { isDark } = useTheme();
 
     return (
-        <section className="py-24 px-6 md:px-12 lg:px-20 w-full overflow-hidden bg-[var(--color-bg)]">
+        <section
+            className="px-6 md:px-12 lg:px-20 w-full overflow-hidden bg-[var(--color-bg)]"
+            style={{ padding: window.innerWidth < 768 ? '100px 0' : '160px 0' }}
+        >
             <motion.div
-                className="text-center mb-16"
+                className="text-center mb-10 md:mb-16"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.2 }}
@@ -47,7 +50,7 @@ const LifestyleGallery = () => {
             </motion.div>
 
             <motion.div
-                className="h-[400px] md:h-[600px] w-full"
+                className="h-[500px] md:h-[600px] w-full"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: false, amount: 0.2 }}
@@ -55,12 +58,14 @@ const LifestyleGallery = () => {
             >
                 <CircularGallery
                     items={galleryItems}
-                    bend={3}
+                    bend={window.innerWidth < 768 ? 0 : 3}
                     textColor={isDark ? "#ffffff" : "#000000"}
                     borderRadius={0.05}
                     font="bold 24px Outfit"
                     autoplay={true}
-                    autoplaySpeed={0.05}
+                    autoplaySpeed={0.04}
+                    scrollSpeed={3}
+                    scrollEase={0.05}
                 />
             </motion.div>
         </section>

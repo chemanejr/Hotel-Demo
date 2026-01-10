@@ -83,7 +83,6 @@ class Title {
             uniforms: { tMap: { value: texture } },
             transparent: true
         });
-        this.program = program;
         this.mesh = new Mesh(this.gl, { geometry, program });
         const aspect = width / height;
         const textHeight = this.plane.scale.y * 0.15;
@@ -91,15 +90,6 @@ class Title {
         this.mesh.scale.set(textWidth, textHeight, 1);
         this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeight * 0.5 - 0.05;
         this.mesh.setParent(this.plane);
-    }
-    updateStyle({ textColor, font }) {
-        const { texture, width, height } = createTextTexture(this.gl, this.text, font || this.font, textColor || this.textColor);
-        this.program.uniforms.tMap.value = texture;
-        const aspect = width / height;
-        const textHeight = this.plane.scale.y * 0.15;
-        const textWidth = textHeight * aspect;
-        this.mesh.scale.set(textWidth, textHeight, 1);
-        this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeight * 0.5 - 0.05;
     }
 }
 
@@ -137,8 +127,8 @@ class Media {
         this.font = font;
         this.createShader();
         this.createMesh();
-        this.onResize();
         this.createTitle();
+        this.onResize();
     }
     createShader() {
         const texture = new Texture(this.gl, {
@@ -231,14 +221,6 @@ class Media {
             font: this.font
         });
     }
-    updateStyle({ textColor, font, borderRadius }) {
-        if (textColor || font) {
-            this.title.updateStyle({ textColor, font });
-        }
-        if (borderRadius !== undefined) {
-            this.program.uniforms.uBorderRadius.value = borderRadius;
-        }
-    }
     update(scroll, direction) {
         this.plane.position.x = this.x - scroll.current - this.extra;
 
@@ -289,16 +271,13 @@ class Media {
             }
         }
         this.scale = this.screen.height / 1500;
-        this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;
-        this.plane.scale.x = (this.viewport.width * (700 * this.scale)) / this.screen.width;
+        this.plane.scale.y = (this.viewport.height * (this.screen.width < 768 ? 900 : 900) * this.scale) / this.screen.height;
+        this.plane.scale.x = (this.viewport.width * (this.screen.width < 768 ? 600 : 700) * this.scale) / this.screen.width;
         this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
         this.padding = 2;
         this.width = this.plane.scale.x + this.padding;
         this.widthTotal = this.width * this.length;
         this.x = this.width * this.index;
-        if (this.title) {
-            this.title.updateStyle({ textColor: this.textColor, font: this.font });
-        }
     }
 }
 
@@ -330,29 +309,8 @@ class App {
         this.onResize();
         this.createGeometry();
         this.createMedias(items, bend, textColor, borderRadius, font);
-
-        // Center the gallery initially so images appear on both sides
-        if (this.medias && this.medias[0]) {
-            const offset = this.medias[0].widthTotal / 2;
-            this.scroll.target = offset;
-            this.scroll.current = offset;
-            this.scroll.last = offset;
-        }
-
         this.update();
         this.addEventListeners();
-    }
-    updateStyle({ textColor, font, borderRadius, bend, scrollSpeed, scrollEase, autoplay, autoplaySpeed }) {
-        this.scrollSpeed = scrollSpeed !== undefined ? scrollSpeed : this.scrollSpeed;
-        this.scroll.ease = scrollEase !== undefined ? scrollEase : this.scroll.ease;
-        this.autoplay = autoplay !== undefined ? autoplay : this.autoplay;
-        this.autoplaySpeed = autoplaySpeed !== undefined ? autoplaySpeed : this.autoplaySpeed;
-        if (this.medias) {
-            this.medias.forEach(media => {
-                media.bend = bend !== undefined ? bend : media.bend;
-                media.updateStyle({ textColor, font, borderRadius });
-            });
-        }
     }
     createRenderer() {
         this.renderer = new Renderer({
@@ -460,7 +418,7 @@ class App {
         if (this.autoplay && !this.isDown) {
             this.scroll.target += this.autoplaySpeed;
         }
-        this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.last !== 0 ? this.scroll.ease : 1);
+        this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
         const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
         if (this.medias) {
             this.medias.forEach(media => media.update(this.scroll, direction));
@@ -469,36 +427,47 @@ class App {
         this.scroll.last = this.scroll.current;
         this.raf = window.requestAnimationFrame(this.update.bind(this));
     }
+    updateStyle({ textColor, font, borderRadius, bend, scrollSpeed, scrollEase, autoplay, autoplaySpeed }) {
+        this.scrollSpeed = scrollSpeed !== undefined ? scrollSpeed : this.scrollSpeed;
+        this.scroll.ease = scrollEase !== undefined ? scrollEase : this.scroll.ease;
+        this.autoplay = autoplay !== undefined ? autoplay : this.autoplay;
+        this.autoplaySpeed = autoplaySpeed !== undefined ? autoplaySpeed : this.autoplaySpeed;
+        if (this.medias) {
+            this.medias.forEach(media => {
+                media.bend = bend !== undefined ? bend : media.bend;
+                if (textColor || font || borderRadius !== undefined) {
+                    // Update media styles if needed
+                    media.textColor = textColor || media.textColor;
+                    media.font = font || media.font;
+                    media.borderRadius = borderRadius !== undefined ? borderRadius : media.borderRadius;
+                    // Note: Ideally we'd have an update method in Media too, but for now we'll rely on onResize or state
+                }
+            });
+        }
+    }
     addEventListeners() {
         this.boundOnResize = this.onResize.bind(this);
         this.boundOnWheel = this.onWheel.bind(this);
         this.boundOnTouchDown = this.onTouchDown.bind(this);
         this.boundOnTouchMove = this.onTouchMove.bind(this);
         this.boundOnTouchUp = this.onTouchUp.bind(this);
-        this.boundOnTouchMove = this.onTouchMove.bind(this);
-        this.boundOnTouchUp = this.onTouchUp.bind(this);
-
         window.addEventListener('resize', this.boundOnResize);
-
-        this.container.addEventListener('mousedown', this.boundOnTouchDown);
-        this.container.addEventListener('mousemove', this.boundOnTouchMove);
-        this.container.addEventListener('mouseup', this.boundOnTouchUp);
-        this.container.addEventListener('touchstart', this.boundOnTouchDown);
-        this.container.addEventListener('touchmove', this.boundOnTouchMove);
-        this.container.addEventListener('touchend', this.boundOnTouchUp);
+        window.addEventListener('mousedown', this.boundOnTouchDown);
+        window.addEventListener('mousemove', this.boundOnTouchMove);
+        window.addEventListener('mouseup', this.boundOnTouchUp);
+        window.addEventListener('touchstart', this.boundOnTouchDown);
+        window.addEventListener('touchmove', this.boundOnTouchMove);
+        window.addEventListener('touchend', this.boundOnTouchUp);
     }
     destroy() {
         window.cancelAnimationFrame(this.raf);
         window.removeEventListener('resize', this.boundOnResize);
-
-        if (this.container) {
-            this.container.removeEventListener('mousedown', this.boundOnTouchDown);
-            this.container.removeEventListener('mousemove', this.boundOnTouchMove);
-            this.container.removeEventListener('mouseup', this.boundOnTouchUp);
-            this.container.removeEventListener('touchstart', this.boundOnTouchDown);
-            this.container.removeEventListener('touchmove', this.boundOnTouchMove);
-            this.container.removeEventListener('touchend', this.boundOnTouchUp);
-        }
+        window.removeEventListener('mousedown', this.boundOnTouchDown);
+        window.removeEventListener('mousemove', this.boundOnTouchMove);
+        window.removeEventListener('mouseup', this.boundOnTouchUp);
+        window.removeEventListener('touchstart', this.boundOnTouchDown);
+        window.removeEventListener('touchmove', this.boundOnTouchMove);
+        window.removeEventListener('touchend', this.boundOnTouchUp);
         if (this.renderer && this.renderer.gl && this.renderer.gl.canvas.parentNode) {
             this.renderer.gl.canvas.parentNode.removeChild(this.renderer.gl.canvas);
         }
@@ -519,42 +488,20 @@ export default function CircularGallery({
     const containerRef = useRef(null);
     const appRef = useRef(null);
 
-    // Initialization and Destruction
     useEffect(() => {
-        const app = new App(containerRef.current, {
-            items,
-            bend,
-            textColor,
-            borderRadius,
-            font,
-            scrollSpeed,
-            scrollEase,
-            autoplay,
-            autoplaySpeed
-        });
+        const app = new App(containerRef.current, { items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase, autoplay, autoplaySpeed });
         appRef.current = app;
-
         return () => {
             if (appRef.current) {
                 appRef.current.destroy();
                 appRef.current = null;
             }
         };
-    }, [items]); // Only re-init if items change
+    }, [items]);
 
-    // Updates
     useEffect(() => {
         if (appRef.current) {
-            appRef.current.updateStyle({
-                textColor,
-                font,
-                borderRadius,
-                bend,
-                scrollSpeed,
-                scrollEase,
-                autoplay,
-                autoplaySpeed
-            });
+            appRef.current.updateStyle({ textColor, font, borderRadius, bend, scrollSpeed, scrollEase, autoplay, autoplaySpeed });
         }
     }, [textColor, font, borderRadius, bend, scrollSpeed, scrollEase, autoplay, autoplaySpeed]);
 

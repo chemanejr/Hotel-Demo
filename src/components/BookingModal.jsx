@@ -54,11 +54,11 @@ const BookingModal = () => {
                     onClick={(e) => e.stopPropagation()}
                     style={{
                         position: 'relative',
-                        width: '100%',
+                        width: 'calc(100% - 1rem)',
                         maxWidth: '500px',
                         background: '#fff',
                         borderRadius: '16px',
-                        padding: '2rem',
+                        padding: typeof window !== 'undefined' && window.innerWidth < 480 ? '1.5rem 1rem' : '2rem',
                         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
                         pointerEvents: 'auto',
                         animation: 'fadeIn 0.2s ease-out'
@@ -95,19 +95,19 @@ const BookingModal = () => {
                             </div>
 
                             {/* Dates Row */}
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+                            <div className="grid grid-cols-2 gap-2 sm:gap-4 mb-6">
                                 <div>
-                                    <label className="booking-modal-label" style={{ display: 'block', fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.5rem' }}>Check-in</label>
+                                    <label className="booking-modal-label" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.5rem' }}>Check-in</label>
                                     <div style={{ position: 'relative' }}>
-                                        <Calendar size={18} style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
-                                        <input type="date" required style={{ width: '100%', padding: '0.75rem 0.75rem 0.75rem 2.5rem', borderRadius: '8px', border: '1px solid #cbd5e1', outline: 'none' }} />
+                                        <Calendar size={16} style={{ position: 'absolute', left: '8px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
+                                        <input type="date" required style={{ width: '100%', padding: '0.6rem 0.5rem 0.6rem 1.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', outline: 'none', fontSize: '0.85rem' }} />
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="booking-modal-label" style={{ display: 'block', fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.5rem' }}>Check-out</label>
+                                    <label className="booking-modal-label" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.5rem' }}>Check-out</label>
                                     <div style={{ position: 'relative' }}>
-                                        <Calendar size={18} style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
-                                        <input type="date" required style={{ width: '100%', padding: '0.75rem 0.75rem 0.75rem 2.5rem', borderRadius: '8px', border: '1px solid #cbd5e1', outline: 'none' }} />
+                                        <Calendar size={16} style={{ position: 'absolute', left: '8px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
+                                        <input type="date" required style={{ width: '100%', padding: '0.6rem 0.5rem 0.6rem 1.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', outline: 'none', fontSize: '0.85rem' }} />
                                     </div>
                                 </div>
                             </div>
@@ -129,13 +129,31 @@ const BookingModal = () => {
                                 </div>
                             </div>
 
-                            <button
-                                type="submit"
-                                className="btn-primary"
-                                style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: '0.5rem' }}
-                            >
-                                Confirmar Disponibilidade
-                            </button>
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                <motion.button
+                                    type="submit"
+                                    className="btn-primary"
+                                    animate={{
+                                        y: [0, -4, 0],
+                                    }}
+                                    transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }}
+                                    style={{
+                                        padding: '0.8rem 2rem',
+                                        fontSize: '0.8rem',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        gap: '0.5rem',
+                                        width: 'auto',
+                                        minWidth: '220px'
+                                    }}
+                                >
+                                    Confirmar Disponibilidade
+                                </motion.button>
+                            </div>
                         </form>
                     ) : (
                         <div style={{ textAlign: 'center', padding: '2rem 0' }}>

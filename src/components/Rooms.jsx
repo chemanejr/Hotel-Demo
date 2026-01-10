@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { MotionCarousel } from './ui/motion-carousel';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const rooms = [
     {
@@ -41,13 +42,18 @@ const rooms = [
 ];
 
 const Rooms = () => {
+    const { t } = useLanguage();
     return (
         <section
             id="rooms"
-            className="min-h-screen w-full py-32 md:py-48 px-6 md:px-12 lg:px-20 bg-[var(--color-bg)] relative scroll-mt-24"
+            className="min-h-screen w-full px-6 md:px-12 lg:px-20 bg-[var(--color-bg)] relative scroll-mt-24 flex flex-col justify-center overflow-hidden"
+            style={{
+                paddingTop: typeof window !== 'undefined' && window.innerWidth < 768 ? '60px' : '110px',
+                paddingBottom: '20px'
+            }}
         >
             <motion.div
-                className="max-w-7xl mx-auto mb-24 md:mb-32 text-center"
+                className="max-w-7xl mx-auto mb-12 md:mb-16 text-center -translate-y-[38px] md:translate-x-[76px] md:-translate-y-[76px]"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
@@ -61,19 +67,19 @@ const Rooms = () => {
             >
                 <motion.h2
                     variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-                    className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 uppercase tracking-tighter"
+                    className="text-4xl md:text-5xl font-bold mb-1 tracking-tight"
                 >
-                    Nossos Quartos
+                    {t('nav.rooms')}
                 </motion.h2>
                 <motion.p
-                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.6, y: 0 } }}
-                    className="text-lg md:text-xl max-w-2xl mx-auto uppercase tracking-[0.1em]"
+                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 0.5, y: 0 } }}
+                    className="text-lg md:text-xl max-w-2xl mx-auto font-medium md:relative md:left-[314px] md:top-[3px]"
                 >
                     Onde o design encontra o descanso absoluto.
                 </motion.p>
             </motion.div>
 
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl mx-auto md:translate-x-[76px] -translate-y-[20px] md:-translate-y-[62px]">
                 <MotionCarousel
                     slides={rooms}
                     options={{ loop: true, align: 'center' }}

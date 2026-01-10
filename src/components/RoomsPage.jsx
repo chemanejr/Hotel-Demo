@@ -170,17 +170,12 @@ const RoomsPage = () => {
             animate={{ opacity: 1 }}
             className="rooms-page"
         >
-            {/* NEW: Background Wave Logic */}
-            <div className="rooms-soul-waves">
-                <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
-                    <path fill="var(--color-primary)" fillOpacity="0.03" d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,181.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-                </svg>
-            </div>
+
 
             {/* Full-Screen Hero Section */}
             <div className="rooms-full-hero" id="room-hero">
                 <div
-                    className="rooms-hero-bg-img ken-burns"
+                    className="rooms-hero-bg-img"
                     style={{ backgroundImage: `url(${activeRoom.image})` }}
                     key={activeTab + "-bg"}
                 />
@@ -287,7 +282,7 @@ const RoomsPage = () => {
                                 <img
                                     src={activeRoom.image}
                                     alt={activeRoom.title}
-                                    className="ken-burns"
+                                    className=""
                                 />
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
